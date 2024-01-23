@@ -1,5 +1,13 @@
-{ config, pkgs, ... }:
+# switch:
+#   home-manager switch
+# help:
+#   https://nix-community.github.io/home-manager/options.xhtml
 
+{ config, pkgs, lib, ... }:
+
+let
+  ares135 = import (builtins.fetchTarball https://github.com/nanaian/nixpkgs/tarball/update/ares) { config = config.nixpkgs.config; };
+in
 {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -20,24 +28,22 @@
   home.packages = with pkgs; [
     # https://search.nixos.org
 
-    # # Adds the 'hello' command to your environment. It prints a friendly
-    # # "Hello, world!" when run.
-    # pkgs.hello
+    zsh
+    thefuck
+    fzf
+    mcfly
 
-    # # It is sometimes useful to fine-tune packages, for example, by applying
-    # # overrides. You can do that directly here, just don't forget the
-    # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
-    # # fonts?
-    # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
+    vscode
+    firefox
+    google-chrome
+    discord
+    bitwarden
+    ares135.ares
+    spotify
+  
+    rustup
 
-    # # You can also create simple shell scripts directly inside your
-    # # configuration. For example, this adds a command 'my-hello' to your
-    # # environment:
-    # (pkgs.writeShellScriptBin "my-hello" ''
-    #   echo "Hello, ${config.home.username}!"
-    # '')
-
-    vscode    
+    monaspace
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -66,10 +72,13 @@
   #
   # if you don't want to manage your shell through Home Manager.
   home.sessionVariables = {
-    # EDITOR = "emacs";
+    NIXPKGS_ALLOW_UNSUPPORTED_SYSTEM = "1"; # needed for papermario old binutils
   };
 
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config = {
+    allowUnfree = true;
+    buildCores = 0; # use all cores
+  };
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
@@ -87,17 +96,59 @@
       init = {
         defaultBranch = "main";
       };
+      url = {
+        "ssh://git@github" = {
+          insteadOf = "https://github";
+        };
+      };
+      pull = {
+        rebase = true;
+      };
+      push = {
+        default = "current";
+        autoSetupRemote = true;
+      };
     };
+    difftastic = { enable = true; };
   };
 
+  # Shell
   programs.zsh = {
     enable = true;
     enableAutosuggestions = true;
     enableCompletion = true;
+    plugins = [
+      {
+        name = "zsh-nix-shell";
+        file = "nix-shell.plugin.zsh";
+        src = pkgs.fetchFromGitHub {
+          owner = "chisui";
+          repo = "zsh-nix-shell";
+          rev = "v0.8.0";
+          sha256 = "1lzrn0n4fxfcgg65v0qhnj7wnybybqzs4adz7xsrkgmcsr0ii8b7";
+        };
+      }
+    ];
+    oh-my-zsh = {
+      enable = true;
+      theme = "agnoster";
+      plugins = [
+        "git"
+        "thefuck"
+      ];
+    };
+    initExtra = ''
+      eval "$(mcfly init zsh)"
+    '';
   };
+  home.sessionVariables.SHELL = pkgs.zsh;
+  programs.mcfly.enable = true;
+  programs.fzf.enable = true;
+  programs.gh.enable = true;
 
   programs.vscode = {
     enable = true;
+    # https://matthewrhone.dev/nixos-vscode
     extensions = with pkgs.vscode-extensions; [
       
     ];
