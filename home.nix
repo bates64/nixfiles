@@ -149,6 +149,13 @@ in
     # https://matthewrhone.dev/nixos-vscode
     extensions = with pkgs.vscode-extensions; [
       
+    ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
+      {
+        name = "apc-extension";
+        publisher = "drcika";
+        version = "0.3.6";
+        sha256 = "sha256-rpp4TUntnsfXi7O/pmgrM8B609v8QTDHuwGAVLfKycA=";
+      }
     ];
   };
 }
