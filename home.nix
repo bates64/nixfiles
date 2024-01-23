@@ -105,8 +105,6 @@ in
         rebase = true;
       };
       push = {
-        default = "current";
-        autoSetupRemote = true;
       };
     };
     difftastic = { enable = true; };
