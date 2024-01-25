@@ -7,6 +7,15 @@
 
 let
   ares135 = import (builtins.fetchTarball https://github.com/nanaian/nixpkgs/tarball/update/ares) { config = config.nixpkgs.config; };
+  gfxpkgs = with pkgs; [
+    libxkbcommon
+    libGL
+    wayland
+    xorg.libXcursor
+    xorg.libXrandr
+    xorg.libXi
+    xorg.libX11
+  ];
 in
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -65,7 +74,7 @@ in
 
     # Fonts
     monaspace
-  ];
+  ] ++ gfxpkgs;
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
@@ -94,6 +103,8 @@ in
   # if you don't want to manage your shell through Home Manager.
   home.sessionVariables = {
     NIXPKGS_ALLOW_UNSUPPORTED_SYSTEM = "1"; # needed for papermario old binutils
+    LD_LIBRARY_PATH = "${lib.makeLibraryPath gfxpkgs}";
+    SHELL = "${pkgs.zsh}/bin/zsh";
   };
 
   nixpkgs.config = {
@@ -160,7 +171,6 @@ in
       eval "$(mcfly init zsh)"
     '';
   };
-  home.sessionVariables.SHELL = pkgs.zsh;
   programs.mcfly.enable = true;
   programs.fzf.enable = true;
   programs.gh.enable = true;
