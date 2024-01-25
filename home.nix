@@ -57,6 +57,7 @@ in
     # Build systems
     gnumake
     ninja
+    cmake
 
     # Development tools
     vscode
