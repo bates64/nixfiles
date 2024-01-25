@@ -117,8 +117,8 @@ in
         defaultBranch = "main";
       };
       url = {
-        "ssh://git@github" = {
-          insteadOf = "https://github";
+        "ssh://git@github/" = {
+          insteadOf = "https://github/";
         };
       };
       pull = {
