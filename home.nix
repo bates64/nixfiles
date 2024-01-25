@@ -28,21 +28,38 @@ in
   home.packages = with pkgs; [
     # https://search.nixos.org
 
+    # Shell
     zsh
     thefuck
     fzf
     mcfly
 
-    vscode
+    # Applications
+    kitty
     firefox
     google-chrome
     discord
     bitwarden
     ares135.ares
+    mupen64plus
     spotify
   
+    # Languages
     rustup
 
+    # Debuggers
+    gdb
+    lldb
+
+    # Build systems
+    gnumake
+    ninja
+
+    # Development tools
+    vscode
+    nixd
+
+    # Fonts
     monaspace
   ];
 
@@ -81,7 +98,7 @@ in
   };
 
   # Let Home Manager install and manage itself.
-  programs.home-manager.enable = true;
+  #programs.home-manager.enable = true;
 
   programs.git = {
     enable = true;
@@ -144,6 +161,10 @@ in
   programs.fzf.enable = true;
   programs.gh.enable = true;
 
+  # Desktop environment
+  #wayland.windowManager.hyprland.enable = true;
+  
+  # Editor
   programs.vscode = {
     enable = true;
     # https://matthewrhone.dev/nixos-vscode
