@@ -47,6 +47,8 @@ in
     # Languages
     rustup
     gcc
+    nodejs
+    nodePackages.pnpm
 
     # Debuggers
     gdb
