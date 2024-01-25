@@ -103,7 +103,7 @@ in
   # if you don't want to manage your shell through Home Manager.
   home.sessionVariables = {
     NIXPKGS_ALLOW_UNSUPPORTED_SYSTEM = "1"; # needed for papermario old binutils
-    LD_LIBRARY_PATH = "${lib.makeLibraryPath gfxpkgs}";
+    LD_LIBRARY_PATH = "$LD_LIBRARY_PATH:${lib.makeLibraryPath gfxpkgs}";
     SHELL = "${pkgs.zsh}/bin/zsh";
   };
 
