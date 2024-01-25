@@ -46,6 +46,7 @@ in
   
     # Languages
     rustup
+    gcc
 
     # Debuggers
     gdb
