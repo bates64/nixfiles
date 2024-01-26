@@ -52,6 +52,7 @@ in
     ares135.ares
     mupen64plus
     spotify
+    aseprite
   
     # Languages
     rustup
