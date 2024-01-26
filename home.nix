@@ -69,7 +69,6 @@ in
     cmake
 
     # Development tools
-    vscode
     nixd
 
     # Fonts
@@ -181,16 +180,11 @@ in
   # Editor
   programs.vscode = {
     enable = true;
-    # https://matthewrhone.dev/nixos-vscode
-    extensions = with pkgs.vscode-extensions; [
-      
-    ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
-      {
-        name = "apc-extension";
-        publisher = "drcika";
-        version = "0.3.6";
-        sha256 = "sha256-rpp4TUntnsfXi7O/pmgrM8B609v8QTDHuwGAVLfKycA=";
-      }
-    ];
+
+    # using fhs fixes some stuff e.g. https://discourse.nixos.org/t/cant-run-c-debugger-in-vscode/33609
+    package = pkgs.vscode.fhsWithPackages (ps: with ps; [
+      # needed for rust-analyzer
+      rustup zlib openssl.dev pkg-config
+    ]);
   };
 }
