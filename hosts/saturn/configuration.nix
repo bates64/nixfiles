@@ -218,4 +218,7 @@
 
   # add vulkan loader to ld path
   environment.sessionVariables.LD_LIBRARY_PATH = "$LD_LIBRARY_PATH:${pkgs.vulkan-loader}/lib";
+
+  # For solaar
+  hardware.logitech.wireless.enable = true;
 }

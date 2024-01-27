@@ -74,6 +74,9 @@ in
 
     # Fonts
     monaspace
+
+    # MX Vertical mouse
+    solaar
   ] ++ gfxpkgs;
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
