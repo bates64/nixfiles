@@ -221,4 +221,7 @@
 
   # For solaar
   hardware.logitech.wireless.enable = true;
+
+  # Casting
+  services.avahi.enable = true;
 }
