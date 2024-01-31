@@ -53,6 +53,7 @@ in
     mupen64plus
     spotify
     aseprite
+    slack
   
     # Languages
     rustup
