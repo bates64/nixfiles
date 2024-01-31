@@ -6,7 +6,7 @@
 { config, pkgs, lib, ... }:
 
 let
-  ares135 = import (builtins.fetchTarball https://github.com/nanaian/nixpkgs/tarball/update/ares) { config = config.nixpkgs.config; };
+  ares135 = import (builtins.fetchTarball https://github.com/bates64/nixpkgs/tarball/update/ares) { config = config.nixpkgs.config; };
   gfxpkgs = with pkgs; [
     libxkbcommon
     libGL
@@ -20,8 +20,8 @@ in
 {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
-  home.username = "nanaian";
-  home.homeDirectory = "/home/nanaian";
+  home.username = "bates64";
+  home.homeDirectory = "/home/bates64";
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
@@ -102,7 +102,7 @@ in
   #
   # or
   #
-  #  /etc/profiles/per-user/nanaian/etc/profile.d/hm-session-vars.sh
+  #  /etc/profiles/per-user/bates64/etc/profile.d/hm-session-vars.sh
   #
   # if you don't want to manage your shell through Home Manager.
   home.sessionVariables = {

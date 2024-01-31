@@ -94,7 +94,7 @@
   virtualisation.docker.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.nanaian = {
+  users.users.bates64 = {
     isNormalUser = true;
     description = "Alex Bates";
     extraGroups = [ "networkmanager" "wheel" "docker" "audio" ];
@@ -102,12 +102,6 @@
     packages = with pkgs; [
     ];
   };
-
-  # Home manager
-  #home-manager.users.nanaian = { pkgs, ... }: {
-  #  home.stateVersion = "23.05";
-  #  home.packages = [ ];
-  #};
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
