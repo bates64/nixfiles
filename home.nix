@@ -22,6 +22,7 @@ in
   # https://github.com/Luis-Hebendanz/nixos-chrome-pwa?tab=readme-ov-file#install-as-a-flake
   imports = [
     "${fetchTarball "https://github.com/Luis-Hebendanz/nixos-chrome-pwa/tarball/master"}/modules/chrome-pwa/home.nix"
+    ./hm/discord
   ];
   services.chrome-pwa.enable = true;
 
@@ -54,7 +55,6 @@ in
     kitty
     firefox
     google-chrome
-    discord
     bitwarden
     ares135.ares
     mupen64plus
@@ -208,5 +208,11 @@ in
       obs-backgroundremoval
       obs-pipewire-audio-capture
     ];
+  };
+
+  # Discord
+  programs.discord = {
+    enable = true;
+    wrapDiscord = true;
   };
 }
