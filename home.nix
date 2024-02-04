@@ -67,6 +67,7 @@ in
     gcc
     nodejs
     nodePackages.pnpm
+    jdk17
 
     # Debuggers
     gdb
@@ -82,6 +83,9 @@ in
 
     # Fonts
     monaspace
+
+    # Utilities
+    libsForQt5.kdialog # needed for tinyfiledialogs
 
     # MX Vertical mouse
     solaar
