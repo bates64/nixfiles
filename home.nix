@@ -67,6 +67,7 @@ in
     gcc
     nodejs
     nodePackages.pnpm
+    nodePackages.yarn
     jdk17
 
     # Debuggers
