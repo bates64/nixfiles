@@ -91,8 +91,10 @@ in
     # MX Vertical mouse
     solaar
 
-    # Streaming
-    chatterino2
+    # Monitors
+    neofetch
+    htop
+    nvtop-nvidia
   ] ++ gfxpkgs;
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
