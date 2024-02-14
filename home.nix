@@ -61,6 +61,7 @@ in
     spotify
     aseprite
     slack
+    zoom-us
   
     # Languages
     rustup
@@ -139,7 +140,7 @@ in
   programs.git = {
     enable = true;
     userName = "Alex Bates";
-    userEmail = "alex@nanaian.town";
+    userEmail = "alex@bates64.com";
     aliases = {
       pu = "push";
       co = "checkout";
