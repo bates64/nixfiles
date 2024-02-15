@@ -50,6 +50,7 @@ in
     thefuck
     fzf
     mcfly
+    zoxide
 
     # Applications
     kitty
