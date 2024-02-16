@@ -56,7 +56,7 @@ in
     kitty
     firefox
     google-chrome
-    bitwarden
+    #bitwarden
     ares135.ares
     mupen64plus
     spotify
@@ -130,9 +130,11 @@ in
     SHELL = "${pkgs.zsh}/bin/zsh";
   };
 
+  # TODO: regular updates
+
   nixpkgs.config = {
     allowUnfree = true;
-    buildCores = 0; # use all cores
+    #buildCores = 0; # use all cores
   };
 
   # Let Home Manager install and manage itself.
