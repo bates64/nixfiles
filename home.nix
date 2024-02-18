@@ -63,6 +63,7 @@ in
     aseprite
     slack
     zoom-us
+    milkytracker
   
     # Languages
     rustup
