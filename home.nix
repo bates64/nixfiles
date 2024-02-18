@@ -64,6 +64,7 @@ in
     slack
     zoom-us
     milkytracker
+    gitkraken
   
     # Languages
     rustup
