@@ -51,6 +51,8 @@ in
     fzf
     mcfly
     zoxide
+    bat
+    eza
 
     # Applications
     kitty
@@ -170,6 +172,12 @@ in
   };
 
   # Shell
+  home.shellAliases = {
+    ls = "eza";
+    ll = "eza -l";
+    la = "eza -la";
+    l = "eza";
+  };
   programs.zsh = {
     enable = true;
     enableAutosuggestions = true;
