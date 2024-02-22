@@ -3,6 +3,10 @@
 # help:
 #   https://nix-community.github.io/home-manager/options.xhtml
 
+# TODO
+# read https://github.com/Misterio77/nix-starter-configs
+# tiling wm
+
 { config, pkgs, lib, ... }:
 
 let
