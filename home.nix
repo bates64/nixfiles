@@ -58,6 +58,7 @@ in
     zoxide
     bat
     eza
+    tre-command
 
     # Applications
     kitty
