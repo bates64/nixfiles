@@ -199,6 +199,11 @@
   };
 
   boot.kernelParams = [ "nvidia.NVreg_PreserveVideoMemoryAllocations=1" ];
+
+  boot.extraModulePackages = with config.boot.kernelPackages; [
+    nvidia_x11
+    ddcci-driver # for brightness control
+  ];
   
   programs.hyprland = {
     enable = true;

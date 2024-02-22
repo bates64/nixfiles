@@ -6,6 +6,7 @@
 # TODO
 # read https://github.com/Misterio77/nix-starter-configs
 # tiling wm
+# hold config e.g. inkscape prefs
 
 { config, pkgs, lib, ... }:
 
@@ -98,6 +99,7 @@ in
 
     # Utilities
     libsForQt5.kdialog # needed for tinyfiledialogs
+    brightnessctl
 
     # MX Vertical mouse
     solaar
