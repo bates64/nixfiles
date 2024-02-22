@@ -67,6 +67,7 @@ in
     zoom-us
     milkytracker
     gitkraken
+    inkscape
   
     # Languages
     rustup
