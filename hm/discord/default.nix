@@ -3,6 +3,7 @@
 #  - Pull the script from sersorrel directly
 #  - Use python3.withPackages > writePython3Bin
 #  - Copy + alter discord's .desktop file
+#  - Use Vencord
 { config, pkgs, lib, ... }:
 
 let
@@ -15,16 +16,18 @@ let
 
   python = pkgs.python3.withPackages (ps: [ ps.pyelftools ps.capstone ]);
 
+  discord = pkgs.discord.override { withVencord = true; };
+
   wrapperScript = pkgs.writeShellScript "discord-wrapper" ''
     set -euxo pipefail
     ${pkgs.findutils}/bin/find -L $HOME/.config/discord -name 'discord_krisp.node' -exec ${python}/bin/python3 ${patcher} {} +
-    ${pkgs.discord}/bin/discord "$@"
+    ${discord}/bin/discord "$@"
   '';
 
   wrappedDiscord = pkgs.runCommand "discord" {} ''
     mkdir -p $out/share/applications $out/bin
     ln -s ${wrapperScript} $out/bin/discord
-    ${pkgs.gnused}/bin/sed 's!Exec=.*!Exec=${wrapperScript}!g' ${pkgs.discord}/share/applications/discord.desktop > $out/share/applications/discord.desktop
+    ${pkgs.gnused}/bin/sed 's!Exec=.*!Exec=${wrapperScript}!g' ${discord}/share/applications/discord.desktop > $out/share/applications/discord.desktop
   '';
 in {
   options.programs.discord = {
@@ -35,6 +38,6 @@ in {
   config = lib.mkIf (cfg.enable) {
     home.packages = if cfg.wrapDiscord
                       then [ wrappedDiscord ]
-                      else [ pkgs.discord ];
+                      else [ discord ];
   };
 }

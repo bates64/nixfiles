@@ -28,7 +28,7 @@ in
   # https://github.com/Luis-Hebendanz/nixos-chrome-pwa?tab=readme-ov-file#install-as-a-flake
   imports = [
     "${fetchTarball "https://github.com/Luis-Hebendanz/nixos-chrome-pwa/tarball/master"}/modules/chrome-pwa/home.nix"
-    ./hm/discord
+    #./hm/discord
   ];
   services.chrome-pwa.enable = true;
 
@@ -70,6 +70,7 @@ in
     mupen64plus
     spotify
     aseprite
+    discord
     slack
     zoom-us
     milkytracker
@@ -114,6 +115,12 @@ in
     htop
     nvtop-nvidia
   ] ++ gfxpkgs;
+
+  nixpkgs.overlays = [
+    (self: super: {
+      discord = pkgs.discord.override { withVencord = true; };
+    })
+  ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
@@ -241,11 +248,5 @@ in
       obs-backgroundremoval
       obs-pipewire-audio-capture
     ];
-  };
-
-  # Discord
-  programs.discord = {
-    enable = true;
-    wrapDiscord = true;
   };
 }
