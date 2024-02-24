@@ -7,6 +7,7 @@
 # read https://github.com/Misterio77/nix-starter-configs
 # tiling wm
 # hold config e.g. inkscape prefs
+# https://gvolpe.com/blog/nixos-binary-cache-ci/
 
 { config, pkgs, lib, ... }:
 
