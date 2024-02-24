@@ -213,6 +213,11 @@ in
   programs.mcfly.enable = true;
   programs.fzf.enable = true;
   programs.gh.enable = true;
+  programs.direnv = {
+    enable = true;
+    enableBashIntegration = true; # ?
+    nix-direnv.enable = true;
+  };
 
   # Desktop environment
   #wayland.windowManager.hyprland.enable = true;
