@@ -70,11 +70,15 @@ in
     mupen64plus
     spotify
     aseprite
-    slack
-    zoom-us
     milkytracker
     gitkraken
     inkscape
+
+    # Messaging
+    # discord is in programs
+    slack
+    # TODO: https://bluebubbles.app/install/
+    zoom-us
   
     # Languages
     rustup
