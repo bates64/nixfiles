@@ -102,6 +102,7 @@ in
 
     # Development tools
     nixd
+    godot_4
 
     # Fonts
     monaspace
