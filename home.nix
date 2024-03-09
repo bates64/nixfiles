@@ -72,9 +72,9 @@ in
     mupen64plus
     spotify
     aseprite
-    milkytracker
     gitkraken
     inkscape
+    blender
 
     # Messaging
     # discord is in programs
