@@ -105,6 +105,7 @@ in
     # Development tools
     nixd
     godot_4
+    fh # https://zero-to-nix.com/start/init-flake
 
     # Fonts
     monaspace
