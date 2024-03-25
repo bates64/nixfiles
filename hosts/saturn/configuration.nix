@@ -20,6 +20,12 @@
   boot.loader.grub.device = "nodev";
   boot.loader.grub.efiSupport = true;
   boot.loader.grub.useOSProber = true;
+  boot.loader.grub = {
+    minegrub-theme = {
+      enable = true;
+      splash = "100% Flakes!";
+    };
+  };
 
   networking.hostName = "saturn"; # Define your hostname.
   #networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
