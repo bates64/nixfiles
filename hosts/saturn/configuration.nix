@@ -21,9 +21,14 @@
   boot.loader.grub.efiSupport = true;
   boot.loader.grub.useOSProber = true;
   boot.loader.grub = {
-    minegrub-theme = {
+    minegrub-world-sel = {
       enable = true;
-      splash = "100% Flakes!";
+      customIcons = [{
+        name = "nixos";
+        lineTop = "NixOS";
+        lineBottom = "Survival Mode, No Cheats, Version: 23.11";
+        imgName = "nixos";
+      }];
     };
   };
 

@@ -2,9 +2,9 @@
   description = "Desktop";
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
-    minegrub-theme.url = "github:Lxtharia/minegrub-theme";
+    minegrub-world-sel-theme.url = "github:Lxtharia/minegrub-world-sel-theme";
   };
-  outputs = { self, nixpkgs, minegrub-theme, ... }:
+  outputs = { self, nixpkgs, minegrub-world-sel-theme, ... }:
     let
       lib = nixpkgs.lib;
     in {
@@ -14,7 +14,7 @@
           modules = [
             ./hardware-configuration.nix
             ./configuration.nix
-            minegrub-theme.nixosModules.default
+            minegrub-world-sel-theme.nixosModules.default
           ];
         };
       };
