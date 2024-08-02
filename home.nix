@@ -30,7 +30,7 @@ in
   # https://github.com/Luis-Hebendanz/nixos-chrome-pwa?tab=readme-ov-file#install-as-a-flake
   imports = [
     "${fetchTarball "https://github.com/Luis-Hebendanz/nixos-chrome-pwa/tarball/master"}/modules/chrome-pwa/home.nix"
-    ./hm/discord
+    #./hm/discord
   ];
   services.chrome-pwa.enable = true;
 
@@ -77,7 +77,7 @@ in
     blender
 
     # Messaging
-    # discord is in programs
+    discord
     slack
     # TODO: https://bluebubbles.app/install/
     zoom-us
@@ -255,8 +255,8 @@ in
   };
 
   # Discord
-  programs.discord = {
-    enable = true;
-    wrapDiscord = true;
-  };
+  #programs.discord = {
+  #  enable = true;
+  #  wrapDiscord = true;
+  #};
 }
