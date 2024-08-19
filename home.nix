@@ -11,7 +11,7 @@
 # hold config e.g. inkscape prefs
 # https://gvolpe.com/blog/nixos-binary-cache-ci/
 
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, stdenv, ... }:
 
 let
   ares135 = import (builtins.fetchTarball https://github.com/bates64/nixpkgs/tarball/update/ares) { config = config.nixpkgs.config; };
@@ -24,6 +24,7 @@ let
     xorg.libXi
     xorg.libX11
   ];
+  star-rod = pkgs.callPackage ./applications/star-rod.nix {};
 in
 {
   # TODO: learn what flakes are and install nixos-chrome-pwa as a flake
@@ -106,6 +107,7 @@ in
     nixd
     godot_4
     fh # https://zero-to-nix.com/start/init-flake
+    star-rod
 
     # Fonts
     monaspace
