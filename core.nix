@@ -1,6 +1,8 @@
-{ config, pkgs, ... }:
+{ lib, config, pkgs, ... }:
 
 {
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [ "vscode" ];
+
   programs.zsh = {
     enable = true;
     oh-my-zsh = {
@@ -17,5 +19,10 @@
     
       window_padding_width = 16;
     };
+  };
+
+  programs.vscode = {
+    enable = true;
+    enableUpdateCheck = false;
   };
 }
