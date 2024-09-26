@@ -23,16 +23,9 @@ let
     ''
     else package;
 in {
-  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [ "vscode" ];
+  imports = [ ./hm/zsh.nix ];
 
-  programs.zsh = {
-    enable = true;
-    oh-my-zsh = {
-      enable = true;
-      theme = "agnoster";
-      plugins = [ "git" "sudo" "zsh-autosuggestions" "zsh-syntax-highlighting" ];
-    };
-  };
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [ "vscode" ];
 
   programs.kitty = {
     enable = true;
