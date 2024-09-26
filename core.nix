@@ -23,7 +23,7 @@ let
     ''
     else package;
 in {
-  imports = [ ./hm/zsh.nix ];
+  imports = [ ./hm/zsh.nix ./hm/fonts.nix ];
 
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [ "vscode" ];
 
@@ -33,6 +33,10 @@ in {
       enable_audio_bell = false;
       window_padding_width = 16;
       update_check_interval = 0;
+    };
+    font = {
+      name = "Comic Code Ligatures";
+      size = 10;
     };
     themeFile = "cherry-midnight";
     shellIntegration.enableZshIntegration = true;
