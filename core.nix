@@ -34,6 +34,7 @@ in {
       window_padding_width = 16;
       update_check_interval = 0;
     };
+    themeFile = "cherry-midnight";
     shellIntegration.enableZshIntegration = true;
     package = wrapGL { name = "kitty"; package = pkgs.kitty; };
   };
