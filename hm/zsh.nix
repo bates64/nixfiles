@@ -9,6 +9,8 @@
       ls = "${pkgs.eza}/bin/eza";
       l = "${pkgs.eza}/bin/eza -l";
       la = "${pkgs.eza}/bin/eza -la";
+      tree = "${pkgs.tre-command}/bin/tre";
+      cat = "${pkgs.bat}/bin/bat";
       amend = "git commit --amend --no-edit";
     };
     initExtra = ''
