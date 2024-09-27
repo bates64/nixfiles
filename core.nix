@@ -38,7 +38,7 @@ in {
       name = "Comic Code Ligatures";
       size = 10;
     };
-    themeFile = "cherry-midnight";
+    #themeFile = "cherry-midnight";
     shellIntegration.enableZshIntegration = true;
     package = wrapGL { name = "kitty"; package = pkgs.kitty; };
   };
