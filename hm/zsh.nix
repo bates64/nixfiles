@@ -20,7 +20,7 @@
     oh-my-zsh = {
       enable = true;
       theme = "agnoster";
-      plugins = [ "git" "sudo" "thefuck" ];
+      plugins = [ "git" "sudo" ];
     };
     plugins = with pkgs; [
       {
@@ -71,4 +71,6 @@
     enable = true;
     enableZshIntegration = true;
   };
+
+  programs.thefuck.enable = true;
 }
