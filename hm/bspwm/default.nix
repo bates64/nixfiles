@@ -17,6 +17,7 @@
     enable = true;
     keybindings = {
       "super + Return" = "kitty";
+      "super + @space" = "rofi -show drun -drun-display-format \"\\{name\\}\" -show-icons -matching fuzzy -auto-select";
       "super + alt + q" = "bspc quit";
 
       # directional focus/swap window
@@ -35,5 +36,5 @@
 
   home.packages = with pkgs; [ picom dunst feh ];
 
-  home.file.".config/gtk-3.0/settings.ini" = ./gtk-3.0-settings.ini;
+  home.file.".config/gtk-3.0/settings.ini".source = ./gtk-3.0-settings.ini;
 }

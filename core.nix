@@ -23,7 +23,12 @@ let
     ''
     else package;
 in {
-  imports = [ ./hm/zsh.nix ./hm/fonts.nix ];
+  imports = [
+    ./hm/zsh.nix
+    ./hm/fonts.nix
+    ./hm/rofi.nix
+    ./hm/bspwm
+  ];
 
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [ "vscode" ];
 
