@@ -1,0 +1,9 @@
+#!/bin/sh
+
+setxkbmap us
+xsetroot --cursor_name left_ptr
+sxhkd &
+picom -fb &
+dunst &
+# todo: feh
+exec bspwm
