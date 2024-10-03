@@ -5,5 +5,7 @@ sxhkd &
 picom -fb &
 dunst &
 xsetroot -cursor_name left_ptr
+polybar main &
+polybar secondary &
 # todo: feh
 exec bspwm
