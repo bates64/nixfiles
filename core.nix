@@ -28,6 +28,7 @@ in {
     ./hm/fonts.nix
     ./hm/rofi.nix
     ./hm/bspwm
+    ./hm/polybar.nix
   ];
 
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [ "vscode" ];
