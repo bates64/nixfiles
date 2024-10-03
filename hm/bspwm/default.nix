@@ -11,6 +11,11 @@
       bspc config pointer_action2 resize_side
       bspc config pointer_action2 resize_corner
     '';
+    monitors = {
+      # work desktop
+      DP-0 = [ "6" "7" "8" "9" "10" ]; # left
+      DP-2 = [ "1" "2" "3" "4" "5" ]; # right
+    };
   };
 
   services.sxhkd = {
@@ -18,7 +23,12 @@
     keybindings = {
       "super + Return" = "kitty";
       "super + @space" = "rofi -show drun -drun-display-format \"\\{name\\}\" -show-icons -matching fuzzy -auto-select";
+
+      # quit bspwm
       "super + alt + q" = "bspc quit";
+
+      # lock screen
+      #"super + x" = "dm-tool lock";
 
       # directional focus/swap window
       "super + {_,shift + }{h,j,k,l}" = "bspc node -{f,s} {west,south,north,east}";
@@ -31,10 +41,13 @@
 
       # shrink window
       "super + alt + shift + {h,j,k,l}" = "bspc node -z {right -20 0,top 0 20,bottom 0 -20, left 20 0}";
+    
+      # close/kill window
+      "super + {_,shift + }q" = "bspc node -{c,k}";
     };
   };
 
-  home.packages = with pkgs; [ picom dunst feh ];
+  home.packages = with pkgs; [ picom dunst feh dbus ];
 
   home.file.".config/gtk-3.0/settings.ini".source = ./gtk-3.0-settings.ini;
 }
