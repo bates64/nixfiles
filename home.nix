@@ -78,10 +78,10 @@ in
     blender
 
     # Messaging
-    discord
     slack
     # TODO: https://bluebubbles.app/install/
     zoom-us
+    discord
   
     # Languages
     rustup
