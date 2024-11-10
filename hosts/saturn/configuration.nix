@@ -83,7 +83,6 @@
   services.printing.enable = true;
 
   # Enable sound with pipewire.
-  sound.enable = true;
   hardware.pulseaudio.enable = false;
   hardware.pulseaudio.support32Bit = true;
   security.rtkit.enable = true;
@@ -169,9 +168,9 @@
   system.autoUpgrade.allowReboot = true;
 
   # Enable OpenGL
-  hardware.opengl.enable = true;
-  hardware.opengl.driSupport32Bit = true;
-  hardware.opengl.extraPackages = with pkgs; [
+  hardware.graphics.enable = true;
+  hardware.graphics.enable32Bit = true;
+  hardware.graphics.extraPackages = with pkgs; [
     intel-media-driver
     libvdpau-va-gl
     vaapiIntel
@@ -219,7 +218,6 @@
   
   programs.hyprland = {
     enable = true;
-    enableNvidiaPatches = true;
     xwayland.enable = true;
   };
 
