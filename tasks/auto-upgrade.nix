@@ -3,7 +3,7 @@
     enable = true;
     flake = "github:bates64/nixfiles/main";
     flags = [
-      "--update-input"
+      "--update-input" # deprecated, see https://github.com/NixOS/nixpkgs/issues/349734
       "nixpkgs"
       "-L" # print build logs
     ];
