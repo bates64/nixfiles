@@ -131,7 +131,6 @@
     wget
     zsh
     kitty
-    home-manager
     vulkan-loader
   ];
 
