@@ -16,6 +16,7 @@
       system = "x86_64-linux";
       modules = [
         ./hosts/saturn/configuration.nix
+        ./tasks/auto-upgrade.nix
         minegrub-world-sel-theme.nixosModules.default
       ];
     };
