@@ -5,7 +5,6 @@
     openFirewall = true;
     allowedPlayers = [
       "bates64"
-      
-    ]
-  }
+    ];
+  };
 }
