@@ -50,7 +50,7 @@
     nixosConfigurations.apollo = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
-        ./hosts/hyperion/configuration.nix
+        ./hosts/apollo/configuration.nix
         ./tasks/auto-upgrade.nix
 
         nixvim.nixosModules.nixvim
