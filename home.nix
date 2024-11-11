@@ -27,13 +27,7 @@ let
   star-rod = pkgs.callPackage ./applications/star-rod.nix {};
 in
 {
-  # TODO: learn what flakes are and install nixos-chrome-pwa as a flake
-  # https://github.com/Luis-Hebendanz/nixos-chrome-pwa?tab=readme-ov-file#install-as-a-flake
-  imports = [
-    "${fetchTarball "https://github.com/Luis-Hebendanz/nixos-chrome-pwa/tarball/master"}/modules/chrome-pwa/home.nix"
-    #./hm/discord
-  ];
-  services.chrome-pwa.enable = true;
+  imports = [];
 
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -151,15 +145,8 @@ in
     SHELL = "${pkgs.zsh}/bin/zsh";
   };
 
-  # TODO: regular updates
-
-  nixpkgs.config = {
-    allowUnfree = true;
-    #buildCores = 0; # use all cores
-  };
-
   # Let Home Manager install and manage itself.
-  #programs.home-manager.enable = true;
+  programs.home-manager.enable = true;
 
   programs.git = {
     enable = true;
