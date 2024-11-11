@@ -5,6 +5,10 @@
     openFirewall = true;
     allowedPlayers = [
       "bates64"
+      "AgsterMC"
+      "asparagoose"
+      "spchee"
+      "IntactLightbulb"
     ];
     # https://forums.factorio.com/viewtopic.php?t=117096
     package = pkgs.stdenv.mkDerivation {
