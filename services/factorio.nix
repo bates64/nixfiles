@@ -17,9 +17,9 @@
       buildPhase = ''
         mkdir -p $out
         cp -r ${pkgs.factorio-headless}/. $out
-        rm -rf $out/quality
-        rm -rf $out/elevated-rails
-        rm -rf $out/space-age
+        rm -rf $out/share/factorio/data/quality
+        rm -rf $out/share/factorio/data/elevated-rails
+        rm -rf $out/share/factorio/data/space-age
       '';
     };
   };
