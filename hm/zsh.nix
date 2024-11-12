@@ -12,6 +12,7 @@
       tree = "${pkgs.tre-command}/bin/tre";
       cat = "${pkgs.bat}/bin/bat";
       amend = "git commit --amend --no-edit";
+      fd = "${pkgs.fd}/bin/fd";
     };
     initExtra = ''
       eval "$(${pkgs.thefuck}/bin/thefuck --alias)"
