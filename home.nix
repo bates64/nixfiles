@@ -11,7 +11,7 @@
 # hold config e.g. inkscape prefs
 # https://gvolpe.com/blog/nixos-binary-cache-ci/
 
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, stdenv, ... }:
 
 let
   ares135 = import (builtins.fetchTarball https://github.com/bates64/nixpkgs/tarball/update/ares) { config = config.nixpkgs.config; };
@@ -24,15 +24,10 @@ let
     xorg.libXi
     xorg.libX11
   ];
+  star-rod = pkgs.callPackage ./applications/star-rod.nix {};
 in
 {
-  # TODO: learn what flakes are and install nixos-chrome-pwa as a flake
-  # https://github.com/Luis-Hebendanz/nixos-chrome-pwa?tab=readme-ov-file#install-as-a-flake
-  imports = [
-    "${fetchTarball "https://github.com/Luis-Hebendanz/nixos-chrome-pwa/tarball/master"}/modules/chrome-pwa/home.nix"
-    #./hm/discord
-  ];
-  services.chrome-pwa.enable = true;
+  imports = [];
 
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -77,10 +72,10 @@ in
     blender
 
     # Messaging
-    discord
     slack
     # TODO: https://bluebubbles.app/install/
     zoom-us
+    discord
   
     # Languages
     rustup
@@ -106,6 +101,7 @@ in
     nixd
     godot_4
     fh # https://zero-to-nix.com/start/init-flake
+    star-rod
 
     # Fonts
     monaspace
@@ -149,15 +145,8 @@ in
     SHELL = "${pkgs.zsh}/bin/zsh";
   };
 
-  # TODO: regular updates
-
-  nixpkgs.config = {
-    allowUnfree = true;
-    #buildCores = 0; # use all cores
-  };
-
   # Let Home Manager install and manage itself.
-  #programs.home-manager.enable = true;
+  programs.home-manager.enable = true;
 
   programs.git = {
     enable = true;
