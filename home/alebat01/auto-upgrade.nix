@@ -17,7 +17,7 @@
 
       Service.ExecStart = toString
         (pkgs.writeShellScript "home-manager-auto-upgrade" ''
-          ${pkgs.home-manager}/bin/home-manager switch --flake github:bates64/nixfiles
+          PATH=$PATH:${pkgs.nix}/bin ${pkgs.home-manager}/bin/home-manager switch --flake github:bates64/nixfiles
         '');
     };
   };
