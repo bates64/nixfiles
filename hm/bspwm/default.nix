@@ -28,7 +28,7 @@
       "super + alt + q" = "bspc quit";
 
       # lock screen
-      #"super + x" = "dm-tool lock";
+      "super + x" = "xsecurelock"; # "${pkgs.xsecurelock}/bin/xsecurelock";
 
       # directional focus/swap window
       "super + {_,shift + }{h,j,k,l}" = "bspc node -{f,s} {west,south,north,east}";
@@ -44,6 +44,9 @@
     
       # close/kill window
       "super + {_,shift + }q" = "bspc node -{c,k}";
+
+      # bluetooth
+      "super + b" = "${pkgs.rofi-bluetooth}/bin/rofi-bluetooth";
     };
   };
 

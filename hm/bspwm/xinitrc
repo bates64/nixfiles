@@ -2,6 +2,7 @@
 
 setxkbmap us
 sxhkd &
+xrandr --dpi 120 --output DP-2 --mode 2560x1440 --auto --left-of DP-0
 picom -fb &
 dunst &
 xsetroot -cursor_name left_ptr
