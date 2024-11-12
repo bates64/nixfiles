@@ -16,10 +16,10 @@
       src = pkgs.factorio-headless.src;
       buildPhase = ''
         mkdir -p $out
-        cp -r ${pkgs.factorio-headless}/. $out
-        rm -rf $out/share/factorio/data/quality
-        rm -rf $out/share/factorio/data/elevated-rails
-        rm -rf $out/share/factorio/data/space-age
+        rsync -a --exclude='share/factorio/data/quality' \
+          --exclude='share/factorio/data/elevated-rails' \
+          --exclude='share/factorio/data/space-age' \
+          ${pkgs.factorio-headless}/ $out
       '';
     };
   };
