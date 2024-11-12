@@ -2,7 +2,7 @@
 {
   programs.rofi = {
     enable = true;
-    font = "Comic Code Ligatures 12";
+    font = "Monaspace Argon 10";
     terminal = "kitty";
     theme = let
         inherit (config.lib.formats.rasi) mkLiteral;

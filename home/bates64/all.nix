@@ -24,11 +24,11 @@ let
     else package;
 in {
   imports = [
-    ./hm/zsh.nix
-    ./hm/fonts.nix
-    ./hm/rofi.nix
-    ./hm/bspwm
-    ./hm/polybar.nix
+    ./zsh.nix
+    ./git.nix
+    ./rofi.nix
+    ./bspwm
+    ./polybar.nix
   ];
 
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [ "vscode" ];
@@ -52,4 +52,8 @@ in {
   programs.vscode = {
     enable = true;
   };
+
+  home.packages = with pkgs; [
+    pkgs.monaspace
+  ];
 }

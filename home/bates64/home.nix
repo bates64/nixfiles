@@ -1,16 +1,3 @@
-# switch:
-#   home-manager switch
-# help:
-#   https://nix-community.github.io/home-manager/options.xhtml
-
-# TODO
-# 1. flakes
-# 2. add https://github.com/determinateSystems/fh
-# https://github.com/Misterio77/nix-starter-configs
-# tiling wm
-# hold config e.g. inkscape prefs
-# https://gvolpe.com/blog/nixos-binary-cache-ci/
-
 { config, pkgs, lib, stdenv, ... }:
 
 let
@@ -27,7 +14,9 @@ let
   star-rod = pkgs.callPackage ./applications/star-rod.nix {};
 in
 {
-  imports = [];
+  imports = [
+    #./all.nix
+  ];
 
   # Home Manager needs a bit of information about you and the paths it should
   # manage.

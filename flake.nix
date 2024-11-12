@@ -24,40 +24,49 @@
     home-manager,
     nixvim,
     ...
-  }@inputs: {
-    # Home PC
-    nixosConfigurations.saturn = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      modules = [
-        ./hosts/saturn/configuration.nix
-        ./tasks/auto-upgrade.nix
-        minegrub-world-sel-theme.nixosModules.default
-
-        home-manager.nixosModules.home-manager
-        # {
-        #   home-manager.useGlobalPkgs = true;
-        #   home-manager.useUserPackages = true;
-
-        #   home-manager.users.bates64 = import ./home.nix;
-        # }
-
-        nixvim.nixosModules.nixvim
-        ./programs/nixvim.nix
-      ];
+  }: {
+    homeConfigurations = {
+      "bates64" = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.x86_64-linux;
+        modules = [ ./home/bates64/home.nix ];
+      };
+      "alebat01" = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.x86_64-linux;
+        modules = [ ./home/alebat01/home.nix ];
+      };
     };
+    nixosConfigurations = {
+      saturn = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ./hosts/saturn/configuration.nix
+          ./tasks/auto-upgrade.nix
+          minegrub-world-sel-theme.nixosModules.default
 
-    # 2-core Hetzner server
-    nixosConfigurations.apollo = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      modules = [
-        ./hosts/apollo/configuration.nix
-        ./tasks/auto-upgrade.nix
+          home-manager.nixosModules.home-manager
+          # {
+          #   home-manager.useGlobalPkgs = true;
+          #   home-manager.useUserPackages = true;
 
-        nixvim.nixosModules.nixvim
-        ./programs/nixvim.nix
+          #   home-manager.users.bates64 = import ./home.nix;
+          # }
 
-        ./services/factorio.nix
-      ];
+          nixvim.nixosModules.nixvim
+          ./programs/nixvim.nix
+        ];
+      };
+      apollo = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ./hosts/apollo/configuration.nix
+          ./tasks/auto-upgrade.nix
+
+          nixvim.nixosModules.nixvim
+          ./programs/nixvim.nix
+
+          ./services/factorio.nix
+        ];
+      };
     };
   };
 }
