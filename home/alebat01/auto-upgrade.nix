@@ -6,7 +6,7 @@
       Install.WantedBy = [ "timers.target" ];
 
       Timer = {
-        OnCalendar = "daily";
+        OnCalendar = "*-*-* 04:40:00";
         Unit = "home-manager-auto-upgrade.service";
         Persistent = true;
       };
