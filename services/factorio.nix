@@ -14,9 +14,10 @@
     package = pkgs.stdenv.mkDerivation {
       name = "factorio-headless-no-space-age";
       src = pkgs.factorio-headless.src;
+      buildInputs = [ pkgs.rsync ];
       buildPhase = ''
         mkdir -p $out
-        rsync -a --exclude='share/factorio/data/quality' \
+        ${rsync}/bin/rsync -a --exclude='share/factorio/data/quality' \
           --exclude='share/factorio/data/elevated-rails' \
           --exclude='share/factorio/data/space-age' \
           ${pkgs.factorio-headless}/ $out
