@@ -132,6 +132,7 @@ in
     NIXPKGS_ALLOW_UNSUPPORTED_SYSTEM = "1"; # needed for papermario old binutils
     LD_LIBRARY_PATH = "$LD_LIBRARY_PATH:${lib.makeLibraryPath gfxpkgs}";
     SHELL = "${pkgs.zsh}/bin/zsh";
+    XDG_DATA_HOME="$HOME/.local/share";
   };
 
   # Let Home Manager install and manage itself.
