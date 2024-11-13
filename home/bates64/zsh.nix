@@ -20,7 +20,7 @@
     '';
     oh-my-zsh = {
       enable = true;
-      theme = "agnoster";
+      theme = "amuse";
       plugins = [ "git" "sudo" ];
     };
     plugins = with pkgs; [
