@@ -24,13 +24,15 @@
     home-manager,
     nixvim,
     ...
-  }: {
+  }: let
+    home = home-manager.lib.homeManagerConfiguration {
+      pkgs = nixpkgs.legacyPackages.x86_64-linux;
+      modules = [ ./home/bates64/home.nix ];
+    };
+  in {
     homeConfigurations = {
-      "bates64" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux;
-        modules = [ ./home/bates64/home.nix ];
-      };
-      "alebat01" = home-manager.lib.homeManagerConfiguration {
+      bates64 = home;
+      alebat01 = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
         modules = [ ./home/alebat01/home.nix ];
       };
@@ -44,12 +46,11 @@
           minegrub-world-sel-theme.nixosModules.default
 
           home-manager.nixosModules.home-manager
-          # {
-          #   home-manager.useGlobalPkgs = true;
-          #   home-manager.useUserPackages = true;
-
-          #   home-manager.users.bates64 = import ./home.nix;
-          # }
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            #home-manager.users.bates64 = home;
+          }
 
           nixvim.nixosModules.nixvim
           ./programs/nixvim.nix
