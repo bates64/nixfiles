@@ -105,7 +105,7 @@ in
     # Monitors
     neofetch
     htop
-    nvtop-nvidia
+    nvtopPackages.nvidia
     
     # Infrastructure
     scaleway-cli
