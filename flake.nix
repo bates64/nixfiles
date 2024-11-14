@@ -49,7 +49,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            #home-manager.users.bates64 = home;
+            home-manager.users.bates64 = ./home/bates64/home.nix;
           }
 
           nixvim.nixosModules.nixvim

@@ -1,7 +1,6 @@
 { config, pkgs, lib, stdenv, ... }:
 
 let
-  ares135 = import (builtins.fetchTarball https://github.com/bates64/nixpkgs/tarball/update/ares) { config = config.nixpkgs.config; };
   gfxpkgs = with pkgs; [
     libxkbcommon
     libGL
@@ -11,7 +10,7 @@ let
     xorg.libXi
     xorg.libX11
   ];
-  star-rod = pkgs.callPackage ./applications/star-rod.nix {};
+  star-rod = pkgs.callPackage ../../programs/star-rod.nix {};
 in
 {
   imports = [
@@ -52,7 +51,7 @@ in
     firefox
     google-chrome
     #bitwarden
-    ares135.ares
+    ares
     mupen64plus
     spotify
     aseprite
@@ -115,7 +114,7 @@ in
   # plain files is through 'home.file'.
   home.file = {
     # TODO: glob
-    ".cargo/config.toml".source = home/.cargo/config.toml;
+    ".cargo/config.toml".source = ../.cargo/config.toml;
   };
 
   # You can also manage environment variables but you will have to manually
