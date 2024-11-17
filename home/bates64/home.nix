@@ -90,6 +90,7 @@ in
     godot_4
     fh # https://zero-to-nix.com/start/init-flake
     star-rod
+    cachix
 
     # Fonts
     monaspace
