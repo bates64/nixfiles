@@ -71,6 +71,13 @@
           ./hosts/apollo/configuration.nix
           ./tasks/auto-upgrade.nix
 
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.bates64 = ./home/bates64/home.nix;
+          }
+
           nixvim.nixosModules.nixvim
           ./programs/nixvim.nix
 
