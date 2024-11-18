@@ -15,6 +15,9 @@
   
     # TODO: install nixos-chrome-pwa as a flake
     # https://github.com/Luis-Hebendanz/nixos-chrome-pwa?tab=readme-ov-file#install-as-a-flake
+
+    vscode-server.url = "github:nix-community/nixos-vscode-server";
+    vscode-server.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = {
@@ -23,6 +26,7 @@
     minegrub-world-sel-theme,
     home-manager,
     nixvim,
+    vscode-server,
     ...
   }: let
     home = home-manager.lib.homeManagerConfiguration {
@@ -54,6 +58,11 @@
 
           nixvim.nixosModules.nixvim
           ./programs/nixvim.nix
+
+          vscode-server.nixosModules.default
+          {
+            services.vscode-server.enable = true;
+          }
         ];
       };
       apollo = nixpkgs.lib.nixosSystem {
@@ -64,6 +73,11 @@
 
           nixvim.nixosModules.nixvim
           ./programs/nixvim.nix
+
+          vscode-server.nixosModules.default
+          {
+            services.vscode-server.enable = true;
+          }
 
           ./services/factorio.nix
         ];
