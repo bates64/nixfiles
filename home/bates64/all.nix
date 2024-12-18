@@ -26,10 +26,11 @@ in {
   imports = [
     ./zsh.nix
     ./git.nix
+  ] ++ (if config.system == "x86_64-linux" then [
     ./rofi.nix
     ./bspwm
     ./polybar.nix
-  ];
+  ] else []);
 
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [ "vscode" ];
 
