@@ -44,7 +44,7 @@
     packages.aarch64-darwin.homeConfigurations = {
       alebat01 = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.aarch64-darwin;
-        modules = [ ./home/alebat01/home.nix ];
+        modules = [ ./home/alebat01/home.nix { isMacOS = true; } ];
       };
     };
     nixosConfigurations = {

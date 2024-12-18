@@ -1,7 +1,7 @@
-{ ... }:
+{ config, ... }:
 {
   services.polybar = {
-    enable = true;
+    enable = !config.isMacOS;
     script = ''
       polybar main &
       polybar secondary &

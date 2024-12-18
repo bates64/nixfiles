@@ -2,7 +2,7 @@
 
 let
   # https://github.com/nix-community/nixGL
-  useNixGL = !("system" ? config); # if not NixOS
+  useNixGL = !("system" ? config) && !config.isMacOS; # if not NixOS
   wrapGL = { name, package }: # wrap a package's bins with nixGL
     if useNixGL
     then pkgs.runCommand "${name}-wrapped" {} ''
@@ -26,11 +26,10 @@ in {
   imports = [
     ./zsh.nix
     ./git.nix
-  ] ++ (if config.system == "x86_64-linux" then [
     ./rofi.nix
     ./bspwm
     ./polybar.nix
-  ] else []);
+  ];
 
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [ "vscode" ];
 

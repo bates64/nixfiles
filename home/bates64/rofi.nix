@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 {
   programs.rofi = {
-    enable = true;
+    enable = !config.isMacOS;
     font = "Monaspace Argon 10";
     terminal = "kitty";
     theme = let
