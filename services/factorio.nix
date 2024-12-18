@@ -9,6 +9,7 @@
       "asparagoose"
       "spchee"
       "IntactLightbulb"
+      "minimento"
     ];
     # https://forums.factorio.com/viewtopic.php?t=117096
     package = pkgs.stdenv.mkDerivation {
