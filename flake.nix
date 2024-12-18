@@ -40,7 +40,9 @@
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
         modules = [ ./home/alebat01/home.nix ];
       };
-      alebat01-aarch64-darwin = home-manager.lib.homeManagerConfiguration {
+    };
+    packages.aarch64-darwin.homeConfigurations = {
+      home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.aarch64-darwin;
         modules = [ ./home/alebat01/home.nix ];
       };
