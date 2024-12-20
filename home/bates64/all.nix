@@ -24,7 +24,7 @@ let
     else package;
 in {
   imports = [
-    ./zsh.nix
+    ./zsh
     ./git.nix
     ./tmux.nix
     ./rofi.nix
@@ -42,7 +42,7 @@ in {
       update_check_interval = 0;
     };
     font = {
-      name = "Monaspace Argon";
+      name = "Fira Code";
       size = 10;
     };
     #themeFile = "cherry-midnight";
@@ -55,6 +55,6 @@ in {
   };
 
   home.packages = with pkgs; [
-    pkgs.monaspace
+    pkgs.fira-code-nerdfont
   ];
 }

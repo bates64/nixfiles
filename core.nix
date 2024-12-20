@@ -41,7 +41,7 @@ in {
       update_check_interval = 0;
     };
     font = {
-      name = "Monaspace Argon";
+      name = "Fira Code";
       size = 10;
     };
     #themeFile = "cherry-midnight";

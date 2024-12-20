@@ -2,7 +2,7 @@
 {
   programs.rofi = {
     enable = !config.isMacOS;
-    font = "Monaspace Argon 10";
+    font = "Fira Code 10";
     terminal = "kitty";
     theme = let
         inherit (config.lib.formats.rasi) mkLiteral;

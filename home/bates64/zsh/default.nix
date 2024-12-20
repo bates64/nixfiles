@@ -18,12 +18,19 @@
       eval "$(${pkgs.thefuck}/bin/thefuck --alias)"
       eval "$(${pkgs.mcfly}/bin/mcfly init zsh)"
     '';
-    oh-my-zsh = {
-      enable = true;
-      theme = "amuse";
-      plugins = [ "git" "sudo" ];
-    };
     plugins = with pkgs; [
+      # theme
+      {
+        name = "powerline10k";
+        src = pkgs.zsh-powerlevel10k;
+        file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
+      }
+      {
+        name = "powerline10k-config";
+        src = ./.;
+        file = "p10k.zsh";
+      }
+
       {
         name = "formarks";
         src = fetchFromGitHub {
