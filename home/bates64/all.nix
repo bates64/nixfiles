@@ -26,6 +26,7 @@ in {
   imports = [
     ./zsh.nix
     ./git.nix
+    ./tmux.nix
     ./rofi.nix
     ./bspwm
     ./polybar.nix
