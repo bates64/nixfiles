@@ -24,6 +24,7 @@ config.ssh_domains = {
     name = 'arm.pc',
     remote_address = '10.2.13.87',
     username = 'alebat01',
+    remote_wezterm_path = '/home/alebat01/.nix-profile/bin/wezterm',
   },
 }
 

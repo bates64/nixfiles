@@ -18,6 +18,9 @@
 
     vscode-server.url = "github:nix-community/nixos-vscode-server";
     vscode-server.inputs.nixpkgs.follows = "nixpkgs";
+
+    nixgl.url = "github:nix-community/nixGL";
+    nixgl.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = {
@@ -27,23 +30,32 @@
     home-manager,
     nixvim,
     vscode-server,
+    nixgl,
     ...
   }: let
+    pkgs-x86_64 = import nixpkgs {
+      system = "x86_64-linux";
+      overlays = [ nixgl.overlay ];
+    };
+    pkgs-aarch64-darwin = import nixpkgs {
+      system = "aarch64-darwin";
+      overlays = [ nixgl.overlay ];
+    };
     home = home-manager.lib.homeManagerConfiguration {
-      pkgs = nixpkgs.legacyPackages.x86_64-linux;
+      pkgs = pkgs-x86_64;
       modules = [ ./home/bates64/home.nix ];
     };
   in {
     homeConfigurations = {
       bates64 = home;
       alebat01 = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux;
+        pkgs = pkgs-x86_64;
         modules = [ ./home/alebat01/home.nix ];
       };
     };
     packages.aarch64-darwin.homeConfigurations = {
       alebat01 = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.aarch64-darwin;
+        pkgs = pkgs-aarch64-darwin;
         modules = [ ./home/alebat01/home.nix { isMacOS = true; } ];
       };
     };

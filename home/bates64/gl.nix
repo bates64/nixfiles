@@ -16,7 +16,7 @@ let
         newfile="$out/bin/$filename"
 
         echo "#!/bin/bash" > "$newfile"
-        echo "nixGL \"$file\" \"\$@\"" >> "$newfile"
+        echo "${pkgs.nixgl.auto.nixGLDefault} \"$file\" \"\$@\"" >> "$newfile"
         chmod +x "$newfile"
       done
     ''
