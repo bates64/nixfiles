@@ -2,7 +2,7 @@
 {
   programs.rofi = {
     enable = !config.isMacOS;
-    font = "Fira Code 10";
+    font = "FiraCode Nerd Font Mono 10";
     terminal = "kitty";
     theme = let
         inherit (config.lib.formats.rasi) mkLiteral;

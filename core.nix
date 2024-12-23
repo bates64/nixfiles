@@ -41,7 +41,7 @@ in {
       update_check_interval = 0;
     };
     font = {
-      name = "Fira Code";
+      name = "FiraCode Nerd Font Mono";
       size = 10;
     };
     #themeFile = "cherry-midnight";
