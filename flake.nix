@@ -54,6 +54,10 @@
       };
     };
     packages.aarch64-darwin.homeConfigurations = {
+      alex = home-manager.lib.homeManagerConfiguration {
+        pkgs = pkgs-aarch64-darwin;
+        modules = [ ./home/bates64/home.nix { isMacOS = true; } ];
+      };
       alebat01 = home-manager.lib.homeManagerConfiguration {
         pkgs = pkgs-aarch64-darwin;
         modules = [ ./home/alebat01/home.nix { isMacOS = true; } ];
