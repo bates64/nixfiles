@@ -1,4 +1,4 @@
-{ lib, config, pkgs, ... }:
+{ lib, pkgs, ... }:
 {
   imports = [
     ./gl.nix
@@ -9,6 +9,7 @@
     ./bspwm
     ./polybar.nix
     ./wezterm
+    #./zed.nix
   ];
 
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [ "vscode" ];
