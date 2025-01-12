@@ -26,7 +26,7 @@
       customIcons = [{
         name = "nixos";
         lineTop = "NixOS";
-        lineBottom = "Survival Mode, No Cheats, Version: 23.11";
+        lineBottom = "Survival Mode, No Cheats";
         imgName = "nixos";
       }];
     };
@@ -159,7 +159,7 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "23.05"; # Did you read the comment?
+  system.stateVersion = "24.05"; # Did you read the comment?
 
   # Enable OpenGL
   hardware.graphics.enable = true;
@@ -215,4 +215,7 @@
     remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
     dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
   };
+
+  # https://discourse.nixos.org/t/logrotate-config-fails-due-to-missing-group-30000/28501
+  services.logrotate.checkConfig = false;
 }
