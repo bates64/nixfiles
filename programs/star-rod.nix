@@ -1,6 +1,6 @@
 { lib, stdenv, fetchzip, jre, makeWrapper }:
 
-stdenv.mkDerivation rec {
+stdenv.mkDerivation {
   version = "0.9.2";
   pname = "star-rod";
 
