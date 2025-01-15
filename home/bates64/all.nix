@@ -12,7 +12,7 @@
     #./zed.nix
   ];
 
-  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [ "vscode" ];
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [ "vscode" "nvidia" ];
 
   programs.vscode = {
     enable = true;
