@@ -22,4 +22,9 @@
     nerd-fonts.fira-code
     mosh # SSH replacement which allows client to lose connection without losing session
   ];
+
+  fonts.fontconfig = {
+    enable = true;
+    defaultFonts.monospace = "FiraCode Nerd Font Mono";
+  };
 }
