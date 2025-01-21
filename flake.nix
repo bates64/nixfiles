@@ -2,7 +2,7 @@
   description = "bates64";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/master";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
   
     minegrub-world-sel-theme.url = "github:Lxtharia/minegrub-world-sel-theme";
     minegrub-world-sel-theme.inputs.nixpkgs.follows = "nixpkgs";
