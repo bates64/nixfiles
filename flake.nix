@@ -69,6 +69,7 @@
         modules = [
           ./hosts/saturn/configuration.nix
           ./tasks/auto-upgrade.nix
+          ./tasks/gc.nix
           minegrub-world-sel-theme.nixosModules.default
 
           home-manager.nixosModules.home-manager
@@ -92,6 +93,7 @@
         modules = [
           ./hosts/apollo/configuration.nix
           ./tasks/auto-upgrade.nix
+          ./tasks/gc.nix
 
           home-manager.nixosModules.home-manager
           {
