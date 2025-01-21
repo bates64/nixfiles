@@ -41,13 +41,12 @@
       system = "aarch64-darwin";
       overlays = [ nixgl.overlay ];
     };
-    home = home-manager.lib.homeManagerConfiguration {
-      pkgs = pkgs-x86_64;
-      modules = [ ./home/bates64/home.nix ];
-    };
   in {
     homeConfigurations = {
-      bates64 = home;
+      bates64 = home-manager.lib.homeManagerConfiguration {
+        pkgs = pkgs-x86_64;
+        modules = [ ./home/bates64/gui ];
+      };
       alebat01 = home-manager.lib.homeManagerConfiguration {
         pkgs = pkgs-x86_64;
         modules = [ ./home/alebat01/home.nix ];
@@ -56,7 +55,7 @@
     packages.aarch64-darwin.homeConfigurations = {
       bates64 = home-manager.lib.homeManagerConfiguration {
         pkgs = pkgs-aarch64-darwin;
-        modules = [ ./home/bates64/home.nix { isMacOS = true; } ];
+        modules = [ ./home/bates64/gui { isMacOS = true; } ];
       };
       alebat01 = home-manager.lib.homeManagerConfiguration {
         pkgs = pkgs-aarch64-darwin;
@@ -76,7 +75,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.bates64 = ./home/bates64/home.nix;
+            home-manager.users.bates64 = ./home/bates64/gui;
           }
 
           nixvim.nixosModules.nixvim
@@ -99,7 +98,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.bates64 = ./home/bates64/all_cli.nix;
+            home-manager.users.bates64 = ./home/bates64/cli;
           }
 
           nixvim.nixosModules.nixvim

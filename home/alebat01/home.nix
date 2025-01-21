@@ -2,7 +2,8 @@
 {
   imports = [
     ./auto-upgrade.nix
-    ../bates64/all.nix
+    ../bates64/cli
+    ../bates64/gui
   ];
 
   options = {
