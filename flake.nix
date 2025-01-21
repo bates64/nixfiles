@@ -110,7 +110,7 @@
           }
 
           ./services/factorio.nix
-          ./services/wua-mediawiki.nix
+          #./services/wua-mediawiki.nix
         ];
       };
     };
