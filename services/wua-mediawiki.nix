@@ -96,19 +96,23 @@ in {
       };
       TemplateStyles = pkgs.fetchzip {
         url = "https://extdist.wmflabs.org/dist/extensions/TemplateStyles-REL1_42-06a2587.tar.gz";
-        hash = "sha256-DMJUyVmkUGLupCZq+zM7Cm8Vy+/2WCiuuyn8NiEZkeI=";
+        hash = "sha256-JJNT8ClWAwFCs8de9kQ3RyQ3T/9l6nIJQH7OWUrNuUE=";
       };
       Loops = pkgs.fetchzip {
         url = "https://extdist.wmflabs.org/dist/extensions/Loops-REL1_42-47718f0.tar.gz";
-        hash = "sha256-vaj7Y/UQNyH9veNII3+77ET+JDhBBgFLtqovrEPckUg=";
+        hash = "sha256-MQpmx/7gxx11o4UYLkrScJH4xlrgrvJgxBTwldTsAoE=";
       };
       Popups = pkgs.fetchzip {
         url = "https://extdist.wmflabs.org/dist/extensions/Popups-REL1_42-a970651.tar.gz";
-        hash = "sha256-B3Np7GP4laGtYEIsWoMS+NNA0+yk8bM4QbIkzhCL6Zo=";
+        hash = "sha256-X/pGGDH3u/QiLsLAftrjadXtS7m8pTIE6PkrCnathT8=";
       };
       CodeMirror = pkgs.fetchzip {
         url = "https://extdist.wmflabs.org/dist/extensions/CodeMirror-REL1_42-29c214e.tar.gz";
-        hash = "sha256-cFiqCoUlBml0KSngdTofQdfnYKaxvDvzAnpoSdSTYkE=";
+        hash = "sha256-y3ElEGPMOnCN4IhnF84RPvr9zBwDGdIDXCgh6lsAwFQ=";
+      };
+      Interwiki = pkgs.fetchzip {
+        url = "Interwiki-REL1_42-fbccb35.tar.gz";
+        hash = "sha256-y3ElEGPMOnCN4IhnF84RPvr9zBwDGdIDXCgh6lsAwFQ=";
       };
     };
   };
