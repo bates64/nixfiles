@@ -47,6 +47,7 @@ in {
       '';
     };
     passwordFile = pkgs.writeText "password" "maverick-skyline-conclude"; # Initial password
+    passwordSender = "alex@bates64.com";
     extraConfig = ''
       # SMTP doesn't work
       $wgEnableEmail = false;
