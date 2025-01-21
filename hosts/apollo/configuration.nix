@@ -134,15 +134,15 @@
 
 
   services.nginx.enable = true;
-services.nginx.virtualHosts."bates64.com" = {
+  services.nginx.virtualHosts."bates64.com" = {
     addSSL = true;
     enableACME = true;
     root = "/var/www/bates64.com";
-};
-security.acme = {
-  acceptTerms = true;
-  defaults.email = "foo@bar.com";
-};
+  };
+  security.acme = {
+    acceptTerms = true;
+    defaults.email = "alex@bates64.com";
+  };
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
