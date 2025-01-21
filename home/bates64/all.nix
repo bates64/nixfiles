@@ -1,9 +1,8 @@
 { lib, pkgs, ... }:
 {
   imports = [
+    ./all_cli.nix
     ./gl.nix
-    ./zsh
-    ./git.nix
     ./tmux.nix
     ./rofi.nix
     ./bspwm

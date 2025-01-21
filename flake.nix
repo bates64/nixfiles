@@ -99,7 +99,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.bates64 = ./home/bates64/home.nix;
+            home-manager.users.bates64 = ./hosts/apollo/all_cli.nix;
           }
 
           nixvim.nixosModules.nixvim
