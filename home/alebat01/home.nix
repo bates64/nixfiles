@@ -5,16 +5,6 @@
     ../bates64/cli
     ../bates64/gui
   ];
-
-  options = {
-    isMacOS = lib.mkOption {
-      type = lib.types.bool;
-      default = false;
-      example = true;
-      description = "Whether macOS is in use.";
-    };
-  };
-
   config = {
     home.username = "alebat01";
     home.homeDirectory = if config.isMacOS then "/Users/alebat01" else "/home/alebat01";
