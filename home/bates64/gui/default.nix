@@ -5,6 +5,7 @@
     ./gl.nix
     ./rofi.nix
     ./bspwm
+    ./aerospace
     ./polybar.nix
     ./wezterm # TODO: migrate to ghostty, once darwin is fixed
     #./ghostty.nix
