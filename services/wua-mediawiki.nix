@@ -61,6 +61,8 @@ in {
       $wgGroupPermissions['*']['read'] = false;
       $wgGroupPermissions['*']['createaccount'] = false;
 
+      $wgGroupPermissions['sysop']['interwiki'] = true;
+
       # VisualEditor
       $wgGroupPermissions['user']['writeapi'] = true;
       $wgDefaultUserOptions['visualeditor-editor'] = "visualeditor";
@@ -76,6 +78,18 @@ in {
       $wgLogo = $wgScriptPath . '/images/2/2a/Logotype_In-game.png';
 
       $wgDiscordWebhookURL = 'https://discord.com/api/webhooks/1272697078664921170/AyTu1joCZW5961jNsg-nCcRemVknhW0y_XhCKQ3HATEo1cVYjNs5d22MktzICb4PbnCv';
+
+      // Vector/2022 dark theme
+      $wgVectorNightMode['beta'] = true;
+      $wgVectorNightMode['logged_out'] = true;
+      $wgVectorNightMode['logged_in'] = true;
+      $wgDefaultUserOptions['vector-theme'] = 'os';
+
+      // Vector/2022 menu positions
+      $wgDefaultUserOptions['vector-main-menu-pinned'] = 1;
+      $wgDefaultUserOptions['vector-page-tools-pinned'] = 0;
+      $wgDefaultUserOptions['vector-toc-pinned'] = 1;
+      $wgDefaultUserOptions['vector-appearance-pinned'] = 0;
     '';
     extensions = {
       VisualEditor = null;
@@ -102,17 +116,17 @@ in {
         url = "https://extdist.wmflabs.org/dist/extensions/Loops-REL1_42-47718f0.tar.gz";
         hash = "sha256-MQpmx/7gxx11o4UYLkrScJH4xlrgrvJgxBTwldTsAoE=";
       };
-      Popups = pkgs.fetchzip {
+      /*Popups = pkgs.fetchzip {
         url = "https://extdist.wmflabs.org/dist/extensions/Popups-REL1_42-a970651.tar.gz";
         hash = "sha256-X/pGGDH3u/QiLsLAftrjadXtS7m8pTIE6PkrCnathT8=";
-      };
+      };*/
       CodeMirror = pkgs.fetchzip {
         url = "https://extdist.wmflabs.org/dist/extensions/CodeMirror-REL1_42-29c214e.tar.gz";
         hash = "sha256-y3ElEGPMOnCN4IhnF84RPvr9zBwDGdIDXCgh6lsAwFQ=";
       };
       Interwiki = pkgs.fetchzip {
-        url = "Interwiki-REL1_42-fbccb35.tar.gz";
-        hash = "sha256-y3ElEGPMOnCN4IhnF84RPvr9zBwDGdIDXCgh6lsAwFQ=";
+        url = "https://extdist.wmflabs.org/dist/extensions/Interwiki-REL1_42-fbccb35.tar.gz";
+        hash = "sha256-27h9jxh2zEZbIbeQ1rKHueqBeCvSR9yxbPrLv3QxrDs=";
       };
     };
   };
