@@ -81,5 +81,5 @@
     nix-direnv.enable = true;
   };
 
-  home.packages = with pkgs; [ mosh ];
+  home.packages = with pkgs; [ mosh nixd ];
 }
