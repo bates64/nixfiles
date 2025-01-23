@@ -111,6 +111,7 @@
 
           ./services/factorio.nix
           ./services/wua-mediawiki.nix
+          ./services/matchbox.nix
         ];
       };
     };
