@@ -77,7 +77,8 @@ in {
 
       $wgLogo = $wgScriptPath . '/images/2/2a/Logotype_In-game.png';
 
-      $wgDiscordWebhookURL = 'https://discord.com/api/webhooks/1272697078664921170/AyTu1joCZW5961jNsg-nCcRemVknhW0y_XhCKQ3HATEo1cVYjNs5d22MktzICb4PbnCv';
+      // TODO: secrets
+      //$wgDiscordWebhookURL = '';
 
       // Vector/2022 dark theme
       $wgVectorNightMode['beta'] = true;
