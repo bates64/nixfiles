@@ -26,8 +26,11 @@
       customIcons = [{
         name = "nixos";
         lineTop = "NixOS";
-        lineBottom = "Survival Mode, No Cheats";
-        imgName = "nixos";
+        lineBottom = "Spectaor Mode, Cheats";
+        customImg = builtins.path {
+          path = ./nixos-logo.png;
+          name = "nixos-img";
+        };
       }];
     };
   };
@@ -96,6 +99,16 @@
     # use the example session manager (no others are packaged yet so this is enabled by default,
     # no need to redefine it in your config for now)
     #media-session.enable = true;
+
+    # https://discourse.nixos.org/t/strange-audio-issues-after-updating/57098/7
+    extraConfig.pipewire = {
+      "context.properties" = {
+        "default.clock.rate" = 48000;
+        "default.clock.quantum" = 2048;
+        "default.clock.min-quantum" = 2048;
+        "default.clock.max-quantum" = 8192;
+      };
+    };
   };
 
 
@@ -192,6 +205,8 @@
     nvidia_x11
     ddcci-driver # for brightness control
   ];
+
+  powerManagement.enable = true; # For sleep and hibernate
   
   programs.hyprland = {
     enable = true;
