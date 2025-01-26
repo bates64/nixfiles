@@ -36,10 +36,12 @@
     pkgs-x86_64 = import nixpkgs {
       system = "x86_64-linux";
       overlays = [ nixgl.overlay ];
+      config.allowUnfree = true;
     };
     pkgs-aarch64-darwin = import nixpkgs {
       system = "aarch64-darwin";
       overlays = [ nixgl.overlay ];
+      config.allowUnfree = true;
     };
   in {
     homeConfigurations = {
@@ -65,6 +67,7 @@
     nixosConfigurations = {
       saturn = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
+        pkgs = pkgs-x86_64;
         modules = [
           ./hosts/saturn/configuration.nix
           ./tasks/auto-upgrade.nix
@@ -76,6 +79,7 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.bates64 = ./home/bates64/gui;
+            home-manager.backupFileExtension = "backup";
           }
 
           nixvim.nixosModules.nixvim

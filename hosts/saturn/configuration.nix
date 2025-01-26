@@ -127,13 +127,6 @@
     ];
   };
 
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-
-  nixpkgs.config.permittedInsecurePackages = [
-    "electron-24.8.6" # bitwarden
-  ];
-
   # Enable flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
