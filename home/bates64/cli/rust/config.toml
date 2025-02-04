@@ -2,5 +2,11 @@
 linker = "/home/bates64/.nix-profile/bin/clang"
 rustflags = ["-C", "link-arg=--ld-path=/home/bates64/.nix-profile/bin/mold"]
 
+[target.aarch64-apple-darwin]
+rustflags = [
+  "-C", "link-arg=-undefined",
+  "-C", "link-arg=dynamic_lookup",
+]
+
 # [build]
 # rustflags = ["-Z", "threads=8"]
