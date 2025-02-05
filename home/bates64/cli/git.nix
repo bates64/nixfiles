@@ -1,4 +1,4 @@
-{ lib, ... }: {
+{ lib, pkgs, ... }: {
   programs.git = {
     enable = true;
     userName = "Alex Bates";
@@ -9,6 +9,9 @@
       cm = "commit";
     };
     extraConfig = {
+      core = {
+        excludesfile = "~/.config/git/gitignore";
+      };
       init = {
         defaultBranch = "main";
       };
@@ -21,8 +24,10 @@
         rebase = true;
       };
       push = {
+        autoSetupRemote = true;
       };
     };
     difftastic = { enable = true; };
   };
+  home.file.".config/git/gitignore".source = ./gitignore;
 }
