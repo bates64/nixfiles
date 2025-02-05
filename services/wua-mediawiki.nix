@@ -77,9 +77,6 @@ in {
 
       $wgLogo = $wgScriptPath . '/images/2/2a/Logotype_In-game.png';
 
-      // TODO: secrets
-      //$wgDiscordWebhookURL = '';
-
       // Vector/2022 dark theme
       $wgVectorNightMode['beta'] = true;
       $wgVectorNightMode['logged_out'] = true;
