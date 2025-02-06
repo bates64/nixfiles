@@ -2,6 +2,7 @@
 {
   imports = [
     ./auto-upgrade.nix
+    ./ssh.nix
     ../bates64/cli
     ../bates64/gui
   ];
