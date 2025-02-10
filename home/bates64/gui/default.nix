@@ -30,6 +30,8 @@
     ]);
   };
 
+  programs.firefox.enable = true;
+
   home.packages = with pkgs; [
     fira-code-nerdfont # TODO(25.05): renamed to nerd-fonts.fira-code
     spotify
@@ -39,6 +41,7 @@
     })
   ] ++ (if config.isMacOS then [] else with pkgs; [
     aseprite # TODO: maintain darwin package
+    ares
   ]);
 
   fonts.fontconfig = {
