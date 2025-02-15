@@ -26,7 +26,7 @@
       customIcons = [{
         name = "nixos";
         lineTop = "NixOS";
-        lineBottom = "Spectaor Mode, Cheats";
+        lineBottom = "Spectator Mode, Cheats";
         customImg = builtins.path {
           path = ./nixos-logo.png;
           name = "nixos-img";
