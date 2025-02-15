@@ -211,9 +211,6 @@
   # Fix cursor not showing on wayland+nvidia
   environment.sessionVariables.WLR_NO_HARDWARE_CURSORS = "1";
 
-  # add vulkan loader to ld path
-  environment.sessionVariables.LD_LIBRARY_PATH = "$LD_LIBRARY_PATH:${pkgs.vulkan-loader}/lib";
-
   # For solaar
   hardware.logitech.wireless.enable = true;
 
