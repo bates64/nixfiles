@@ -76,10 +76,7 @@
 
   programs.zoxide.enable = true;
 
-  programs.direnv = {
-    enable = true;
-    nix-direnv.enable = true;
-  };
+  services.lorri.enable = true;
 
-  home.packages = with pkgs; [ mosh nixd ];
+  home.packages = with pkgs; [ mosh nixd direnv ];
 }
