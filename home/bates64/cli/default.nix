@@ -3,6 +3,7 @@
   imports = [
     ./shell
     ./git.nix
+    ./caches.nix
     #./tmux.nix
     #./rust
   ];
