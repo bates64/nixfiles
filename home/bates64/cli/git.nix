@@ -30,4 +30,11 @@
     difftastic = { enable = true; };
   };
   home.file.".config/git/gitignore".source = ./gitignore;
+
+  programs.gh = {
+    enable = true;
+    extensions = with pkgs; [
+      gh-poi # `gh poi` to delete local branches that have been merged
+    ];
+  };
 }
