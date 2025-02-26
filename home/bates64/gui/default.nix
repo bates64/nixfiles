@@ -30,7 +30,7 @@
     ]);
   };
 
-  programs.firefox.enable = true;
+  programs.firefox.enable = !config.isMacOS; # currently broken on darwin (package.meta.badPlatforms)
 
   home.packages = with pkgs; [
     fira-code-nerdfont # TODO(25.05): renamed to nerd-fonts.fira-code
