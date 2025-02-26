@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 {
   programs.zsh = {
     enable = true;
@@ -76,7 +76,12 @@
 
   programs.zoxide.enable = true;
 
-  services.lorri.enable = true;
+  # lorri > nix-direnv, but lorri is not available on macOS
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = config.isMacOS;
+  };
+  services.lorri.enable = !config.isMacOS;
 
-  home.packages = with pkgs; [ mosh nixd direnv ];
+  home.packages = with pkgs; [ mosh nixd ];
 }
