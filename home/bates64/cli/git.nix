@@ -11,6 +11,8 @@
     extraConfig = {
       core = {
         excludesfile = "~/.config/git/gitignore";
+        fsmonitor = true;
+        untrackedCache = true;
       };
       init = {
         defaultBranch = "main";
@@ -25,9 +27,38 @@
       };
       push = {
         autoSetupRemote = true;
+        followTags = true;
+      };
+      fetch = {
+        prune = true;
+        pruneTags = true;
+        all = true;
+      };
+      rebase = {
+        autoSquash = true;
+        autoStash = true;
+        updateRefs = true;
+      };
+      rerere = {
+        enabled = true;
+        autoupdate = true;
+      };
+      merge.conflictstyle = "zdiff3";
+      commit.verbose = true;
+      column.ui = "auto";
+      branch.sort = "-committerdate";
+      tag.sort = "version:refname";
+      help.autocorrect = "prompt";
+    };
+    maintenance.enable = true;
+    delta = {
+      enable = true;
+      options = {
+        side-by-side = true;
+        line-numbers = true;
+        hyperlinks = true;
       };
     };
-    difftastic = { enable = true; };
   };
   home.file.".config/git/gitignore".source = ./gitignore;
 
