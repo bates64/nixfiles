@@ -13,9 +13,7 @@
       cat = "${pkgs.bat}/bin/bat";
       amend = "git commit --amend --no-edit";
       fd = "${pkgs.fd}/bin/fd";
-    } // (if config.isMacOS then {
-      ares = "/Applications/ares.app/Contents/MacOS/ares"; # pkgs.ares is broken on darwin
-    } else {});
+    };
     initExtra = ''
       eval "$(${pkgs.thefuck}/bin/thefuck --alias)"
       eval "$(${pkgs.mcfly}/bin/mcfly init zsh)"

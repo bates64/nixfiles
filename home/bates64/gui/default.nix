@@ -33,19 +33,16 @@
   programs.firefox.enable = !config.isMacOS; # currently broken on darwin (package.meta.badPlatforms)
 
   home.packages = with pkgs; [
-    fira-code-nerdfont # TODO(25.05): renamed to nerd-fonts.fira-code
+    nerd-fonts.fira-code
     spotify
     (discord.override {
       withOpenASAR = true;
       withVencord = true;
     })
+    ares
   ] ++ (if config.isMacOS then [] else with pkgs; [
     aseprite # TODO: maintain darwin package
-    ares
   ]);
 
-  fonts.fontconfig = {
-    enable = !config.isMacOS; # TODO(25.05): fixed on darwin; make always true
-    defaultFonts.monospace = ["FiraCode Nerd Font Mono"];
-  };
+  fonts.fontconfig.defaultFonts.monospace = ["FiraCode Nerd Font Mono"];
 }
