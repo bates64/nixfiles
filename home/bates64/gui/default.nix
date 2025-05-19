@@ -1,5 +1,13 @@
 { lib, pkgs, config, ... }:
-{
+let
+  # on macOS, override ares so that `ares` works in the shell
+  ares-wrapped = if config.isMacOS then pkgs.ares.overrideAttrs (oldAttrs: {
+    postFixup = ''
+      ${oldAttrs.postFixup}
+      ln -s $out/Applications/ares.app/Contents/MacOS/ares $out/bin/ares
+    '';
+  }) else pkgs.ares;
+in {
   imports = [
     ../cli
     ./gl.nix
@@ -39,7 +47,7 @@
       withOpenASAR = true;
       withVencord = true;
     })
-    ares
+    ares-wrapped
   ] ++ (if config.isMacOS then [] else with pkgs; [
     aseprite # TODO: maintain darwin package
   ]);
