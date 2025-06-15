@@ -32,7 +32,7 @@
       fetch = {
         prune = true;
         pruneTags = true;
-        all = true;
+        all = false;
       };
       rebase = {
         autoSquash = true;
