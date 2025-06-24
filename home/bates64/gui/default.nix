@@ -44,8 +44,8 @@ in {
     nerd-fonts.fira-code
     spotify
     (discord.override {
-      withOpenASAR = true;
-      withVencord = true;
+      withOpenASAR = !config.isMacOS;
+      withVencord = !config.isMacOS;
     })
     ares-wrapped
   ] ++ (if config.isMacOS then [] else with pkgs; [
