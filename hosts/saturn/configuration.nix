@@ -13,13 +13,10 @@
       ./8bitdo.nix
     ];
 
-  # Bootloader.
-  #boot.loader.systemd-boot.enable = true;
-  #boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.grub.enable = true;
-  boot.loader.grub.efiSupport = true;
-  boot.loader.grub.efiInstallAsRemovable = true;
   boot.loader.grub = {
+    enable = true;
+    efiSupport = true;
+    devices = [ "/dev/sda" ]; # TODO: shouldn't need to hardcode, see nix-community/disko#981
     minegrub-world-sel = {
       enable = true;
       customIcons = [{

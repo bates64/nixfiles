@@ -20,14 +20,12 @@ in {
         content = {
           type = "gpt";
           partitions = {
-            MBR = {
-              type = "EF02"; # for grub MBR
+            boot = {
               size = "1M";
-              priority = 1; # Needs to be first partition
+              type = "EF02"; # for grub MBR
             };
-            # EFI boot partition
             ESP = {
-              size = "512M";
+              size = "1G";
               type = "EF00";
               content = {
                 type = "filesystem";
