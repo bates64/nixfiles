@@ -83,7 +83,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.bates64 = ./home/bates64/gui;
+            home-manager.users.bates64 = ./home/bates64/cli;
             home-manager.backupFileExtension = "backup";
           }
 

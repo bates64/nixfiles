@@ -6,6 +6,9 @@
 
 { config, pkgs, ... }:
 
+let
+  minimal = true;
+in
 {
   imports =
     [
@@ -165,7 +168,7 @@
   system.stateVersion = "24.05"; # Did you read the comment?
 
   # Enable OpenGL
-  hardware.graphics.enable = true;
+  hardware.graphics.enable = !minimal;
   hardware.graphics.enable32Bit = true;
   hardware.graphics.extraPackages = with pkgs; [
     intel-media-driver
@@ -197,7 +200,7 @@
   powerManagement.enable = true; # For sleep and hibernate
   
   programs.hyprland = {
-    enable = true;
+    enable = !minimal;
     xwayland.enable = true;
   };
 
@@ -213,7 +216,7 @@
   services.avahi.enable = true;
 
   programs.steam = {
-    enable = true;
+    enable = !minimal;
     remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
     dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
   };
