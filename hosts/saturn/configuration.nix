@@ -9,7 +9,7 @@
 {
   imports =
     [
-      ./hardware-configuration.nix
+      ./disko.nix
       ./8bitdo.nix
     ];
 
