@@ -1,12 +1,13 @@
 { ... }:
 let
-  luksContent = {
+  makeLuksContent = diskName: content: {
     type = "luks";
-    name = "crypted";
+    name = diskName;
     settings = {
       allowDiscards = true;
       crypttabExtraOpts = ["fido2-device=auto" "token-timeout=10"];
     };
+    inherit content;
   };
 in {
   # TODO: once I have more ram, make /tmp a tmpfs
@@ -36,28 +37,26 @@ in {
             };
             luks = {
               size = "100%";
-              content = luksContent // {
-                content = {
-                  type = "btrfs";
-                  extraArgs = [ "-f" ]; # Override existing filesystem
-                  subvolumes = {
-                    "/rootfs" = {
-                      mountpoint = "/";
-                      mountOptions = [
-                        "compress=zstd"
-                      ];
-                    };
-                    "/home" = {
-                      mountpoint = "/home";
-                      mountOptions = [
-                        "compress=zstd"
-                      ];
-                    };
-                    "/swap" = {
-                      mountpoint = "/.swapvol";
-                      # https://btrfs.readthedocs.io/en/latest/Swapfile.html
-                      swap.swapfile.size = "20G"; # ~1.5x RAM
-                    };
+              content = makeLuksContent "main-crypt" {
+                type = "btrfs";
+                extraArgs = [ "-f" ]; # Override existing filesystem
+                subvolumes = {
+                  "/rootfs" = {
+                    mountpoint = "/";
+                    mountOptions = [
+                      "compress=zstd"
+                    ];
+                  };
+                  "/home" = {
+                    mountpoint = "/home";
+                    mountOptions = [
+                      "compress=zstd"
+                    ];
+                  };
+                  "/swap" = {
+                    mountpoint = "/.swapvol";
+                    # https://btrfs.readthedocs.io/en/latest/Swapfile.html
+                    swap.swapfile.size = "20G"; # ~1.5x RAM
                   };
                 };
               };
@@ -73,15 +72,13 @@ in {
           partitions = {
             luks = {
               size = "100%";
-              content = luksContent // {
-                content = {
-                  type = "btrfs";
-                  mountpoint = "/nix";
-                  mountOptions = [
-                    "compress=zstd"
-                    "noatime"
-                  ];
-                };
+              content = makeLuksContent "nixstore-crypt" {
+                type = "btrfs";
+                mountpoint = "/nix";
+                mountOptions = [
+                  "compress=zstd"
+                  "noatime"
+                ];
               };
             };
           };
