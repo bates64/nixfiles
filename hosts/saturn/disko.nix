@@ -3,13 +3,10 @@ let
   luksContent = {
     type = "luks";
     name = "crypted";
-    # disable settings.keyFile if you want to use interactive password entry
-    #passwordFile = "/tmp/secret.key"; # Interactive
     settings = {
       allowDiscards = true;
-      keyFile = "/tmp/secret.key";
+      crypttabExtraOpts = ["fido2-device=auto" "token-timeout=10"];
     };
-    additionalKeyFiles = [ "/tmp/additionalSecret.key" ];
   };
 in {
   # TODO: once I have more ram, make /tmp a tmpfs
