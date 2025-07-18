@@ -21,10 +21,6 @@ in {
         content = {
           type = "gpt";
           partitions = {
-            boot = {
-              size = "1M";
-              type = "EF02"; # for grub MBR
-            };
             ESP = {
               size = "1G";
               type = "EF00";

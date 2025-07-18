@@ -19,6 +19,8 @@ in
   boot.loader.grub = {
     enable = true;
     efiSupport = true;
+    device = "nodev"; # EFI only
+    enableCryptodisk = true;
     minegrub-world-sel = {
       enable = true;
       customIcons = [{
