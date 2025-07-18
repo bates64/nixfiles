@@ -127,6 +127,7 @@ in
     shell = pkgs.zsh;
     packages = with pkgs; [
     ];
+    initialPassword = ""; # change me
   };
 
   # Enable flakes
