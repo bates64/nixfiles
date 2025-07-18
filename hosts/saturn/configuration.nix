@@ -10,13 +10,12 @@
   imports =
     [
       ./disko.nix
-      ./8bitdo.nix
+      #./8bitdo.nix
     ];
 
   boot.loader.grub = {
     enable = true;
     efiSupport = true;
-    devices = [ "/dev/sda" ]; # TODO: shouldn't need to hardcode, see nix-community/disko#981
     minegrub-world-sel = {
       enable = true;
       customIcons = [{
