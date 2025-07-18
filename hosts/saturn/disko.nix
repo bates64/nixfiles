@@ -66,6 +66,17 @@ in {
         content = {
           type = "gpt";
           partitions = {
+            # TODO: get rid of this, this disk should not be bootable or appear in grub
+            ESP = {
+              size = "1G";
+              type = "EF00";
+              content = {
+                type = "filesystem";
+                format = "vfat";
+                mountpoint = "/boot";
+                mountOptions = [ "umask=0077" ];
+              };
+            };
             luks = {
               size = "100%";
               content = makeLuksContent "nixstore-crypt" {
