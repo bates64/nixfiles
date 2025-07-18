@@ -21,6 +21,10 @@ in {
         content = {
           type = "gpt";
           partitions = {
+            BOOT = {
+              size = "1M";
+              type = "EF02"; # for grub MBR
+            };
             ESP = {
               size = "1G";
               type = "EF00";
@@ -67,6 +71,10 @@ in {
           type = "gpt";
           partitions = {
             # TODO: get rid of this, this disk should not be bootable or appear in grub
+            BOOT = {
+              size = "1M";
+              type = "EF02"; # for grub MBR
+            };
             ESP = {
               size = "1G";
               type = "EF00";
