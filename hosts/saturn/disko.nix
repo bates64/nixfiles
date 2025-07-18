@@ -65,9 +65,7 @@ in {
           };
         };
       };
-    };
-    nixdisk = {
-      main = {
+      nixstore = {
         type = "disk";
         device = "/dev/nvme0n1"; # faster disk
         content = {
