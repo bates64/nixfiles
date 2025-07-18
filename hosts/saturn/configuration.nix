@@ -4,7 +4,7 @@
 #     man configuration.nix
 #     nixos-help
 
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 let
   minimal = true;
@@ -43,8 +43,10 @@ in
   # Enable networking
   networking.networkmanager.enable = true;
 
-  hardware.bluetooth.enable = true;
-  hardware.bluetooth.powerOnBoot = true;
+  hardware.bluetooth = lib.mkIf (!minimal) {
+    enable = true;
+    powerOnBoot = true;
+  };
 
   # Set your time zone.
   time.timeZone = "Europe/London";
@@ -65,11 +67,11 @@ in
   };
 
   # Enable the X11 windowing system.
-  services.xserver.enable = true;
+  services.xserver.enable = !minimal;
 
   # Enable the KDE Plasma Desktop Environment.
-  services.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
+  services.displayManager.sddm.enable = !minimal;
+  services.xserver.desktopManager.plasma5.enable = !minimal;
 
   # Configure keymap in X11
   services.xserver = {
@@ -80,13 +82,13 @@ in
   console.keyMap = "us";
 
   # Enable CUPS to print documents.
-  services.printing.enable = true;
+  services.printing.enable = !minimal;
 
   # Enable sound with pipewire.
   hardware.pulseaudio.enable = false;
   hardware.pulseaudio.support32Bit = true;
   security.rtkit.enable = true;
-  services.pipewire = {
+  services.pipewire = lib.mkIf (!minimal) {
     enable = true;
     alsa.enable = true;
     alsa.support32Bit = true;
@@ -113,7 +115,7 @@ in
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
-  virtualisation.docker.enable = true;
+  virtualisation.docker.enable = !minimal;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.bates64 = {
@@ -180,9 +182,9 @@ in
   ];
 
   # Load nvidia driver for Xorg and Wayland
-  services.xserver.videoDrivers = ["nvidia"];
+  services.xserver.videoDrivers = lib.mkIf (!minimal) ["nvidia"];
 
-  hardware.nvidia = {
+  hardware.nvidia = lib.mkIf (!minimal) {
     modesetting.enable = true;
     open = false;
     nvidiaSettings = true;
@@ -192,15 +194,15 @@ in
 
   boot.kernelParams = [ "nvidia.NVreg_PreserveVideoMemoryAllocations=1" ];
 
-  boot.extraModulePackages = with config.boot.kernelPackages; [
+  boot.extraModulePackages = with config.boot.kernelPackages; lib.mkIf (!minimal) [
     nvidia_x11
     ddcci-driver # for brightness control
   ];
 
-  powerManagement.enable = true; # For sleep and hibernate
+  powerManagement.enable = !minimal; # For sleep and hibernate
   
-  programs.hyprland = {
-    enable = !minimal;
+  programs.hyprland = lib.mkIf (!minimal) {
+    enable = true;
     xwayland.enable = true;
   };
 
@@ -210,13 +212,13 @@ in
   environment.sessionVariables.WLR_NO_HARDWARE_CURSORS = "1";
 
   # For solaar
-  hardware.logitech.wireless.enable = true;
+  hardware.logitech.wireless.enable = !minimal;
 
   # Casting
-  services.avahi.enable = true;
+  services.avahi.enable = !minimal;
 
-  programs.steam = {
-    enable = !minimal;
+  programs.steam = lib.mkIf (!minimal) {
+    enable = true;
     remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
     dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
   };
