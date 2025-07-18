@@ -21,6 +21,9 @@
 
     nixgl.url = "github:nix-community/nixGL";
     nixgl.inputs.nixpkgs.follows = "nixpkgs";
+
+    disko.url = "github:nix-community/disko/latest";
+    disko.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = {
@@ -31,6 +34,7 @@
     nixvim,
     vscode-server,
     nixgl,
+    disko,
     ...
   }: let
     pkgs-x86_64 = import nixpkgs {
@@ -73,6 +77,7 @@
           ./tasks/auto-upgrade.nix
           ./tasks/gc.nix
           minegrub-world-sel-theme.nixosModules.default
+          disko.nixosModules.disko
 
           home-manager.nixosModules.home-manager
           {
