@@ -44,6 +44,7 @@ in
 
   # Enable networking
   networking.networkmanager.enable = true;
+  hardware.enableAllFirmware = true; # Enable proprietary firmware for things like WiFi cards
 
   hardware.bluetooth = lib.mkIf (!minimal) {
     enable = true;
@@ -138,9 +139,8 @@ in
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    wget
+    busybox
     zsh
-    kitty
     vulkan-loader
   ];
 
