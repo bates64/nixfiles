@@ -7,7 +7,7 @@
 { config, pkgs, lib, ... }:
 
 let
-  minimal = true;
+  minimal = false;
 in
 {
   imports =
