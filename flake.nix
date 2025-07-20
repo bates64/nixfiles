@@ -81,24 +81,28 @@
           minegrub-world-sel-theme.nixosModules.default
           disko.nixosModules.disko
 
-          # Boot splash
+          # Splash
           {
-            boot.plymouth.enable = true;
-            boot.plymouth.theme = "mc";
-            boot.plymouth.themePackages = [
-              minecraft-plymouth-theme.defaultPackage.x86_64-linux
-            ];
+            boot = {
+              plymouth = {
+                enable = true;
+                theme = "mc";
+                themePackages = [
+                  minecraft-plymouth-theme.defaultPackage.x86_64-linux
+                ];
+              };
 
-            # Enable "Silent boot"
-            consoleLogLevel = 3;
-            initrd.verbose = false;
-            kernelParams = [
-              "quiet"
-              "splash"
-              "boot.shell_on_fail"
-              "udev.log_priority=3"
-              "rd.systemd.show_status=auto"
-            ];
+              # Enable "Silent boot"
+              consoleLogLevel = 3;
+              initrd.verbose = false;
+              kernelParams = [
+                "quiet"
+                "splash"
+                "boot.shell_on_fail"
+                "udev.log_priority=3"
+                "rd.systemd.show_status=auto"
+              ];
+            };
           }
 
           home-manager.nixosModules.home-manager
