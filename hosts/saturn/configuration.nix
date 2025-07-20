@@ -35,6 +35,7 @@ in
     };
   };
 
+  boot.initrd.systemd.enable = true;
   boot.initrd.luks.fido2Support = true;
   boot.initrd.systemd.fido2.enable = true;
 
