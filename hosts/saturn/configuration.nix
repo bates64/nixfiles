@@ -36,7 +36,7 @@ in
   };
 
   boot.initrd.systemd.enable = true;
-  boot.initrd.luks.fido2Support = true;
+  boot.initrd.luks.fido2Support = false; # disko does it with crypttab
   boot.initrd.systemd.fido2.enable = true;
 
   networking.hostName = "saturn"; # Define your hostname.
