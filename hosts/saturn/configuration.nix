@@ -35,6 +35,9 @@ in
     };
   };
 
+  boot.initrd.luks.fido2Support = true;
+  boot.initrd.systemd.fido2.enable = true;
+
   networking.hostName = "saturn"; # Define your hostname.
   #networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
