@@ -6,6 +6,8 @@
   
     minegrub-world-sel-theme.url = "github:Lxtharia/minegrub-world-sel-theme";
     minegrub-world-sel-theme.inputs.nixpkgs.follows = "nixpkgs";
+
+    minecraft-plymouth-theme.url = "github:nikp123/minecraft-plymouth-theme";
   
     home-manager.url = "github:nix-community/home-manager/release-25.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -27,9 +29,9 @@
   };
 
   outputs = {
-    self,
     nixpkgs,
     minegrub-world-sel-theme,
+    minecraft-plymouth-theme,
     home-manager,
     nixvim,
     vscode-server,
@@ -78,6 +80,26 @@
           ./tasks/gc.nix
           minegrub-world-sel-theme.nixosModules.default
           disko.nixosModules.disko
+
+          # Boot splash
+          {
+            boot.plymouth.enable = true;
+            boot.plymouth.theme = "mc";
+            boot.plymouth.themePackages = [
+              minecraft-plymouth-theme.defaultPackage.x86_64-linux
+            ];
+
+            # Enable "Silent boot"
+            consoleLogLevel = 3;
+            initrd.verbose = false;
+            kernelParams = [
+              "quiet"
+              "splash"
+              "boot.shell_on_fail"
+              "udev.log_priority=3"
+              "rd.systemd.show_status=auto"
+            ];
+          }
 
           home-manager.nixosModules.home-manager
           {
