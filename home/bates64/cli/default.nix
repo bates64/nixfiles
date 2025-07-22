@@ -5,7 +5,8 @@
     ./git.nix
     ./caches.nix
     #./tmux.nix
-    #./rust
+    ./rust
+    ./cpp
   ];
   options = {
     isMacOS = lib.mkOption {
