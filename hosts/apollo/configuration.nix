@@ -62,6 +62,9 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.libinput.enable = true;
 
+  # Allow --target-host to be used with nixos-rebuild.
+  nix.settings.trusted-users = [ "root" "@wheel" ];
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.bates64 = {
      isNormalUser = true;

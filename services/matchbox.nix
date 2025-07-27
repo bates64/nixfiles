@@ -11,7 +11,7 @@ let
       hash = "sha256-fF6SeZhfOkyK1hAWxdcXjf6P6pVJWLlkIUtyGxVrm94=";
     };
     buildAndTestSubdir = "matchbox_server";
-    cargoHash = "sha256-yNwfSL81ONhW1sQJOx2YHUR1X8mEHCvebc6Qvbx0oLI=";
+    cargoHash = "sha256-ELA9+wTFYxiuG/QLb0oxN5KfVSalWKmKEvzRlxNHQnw=";
   };
 in {
   systemd.services.matchbox = {

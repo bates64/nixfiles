@@ -26,6 +26,9 @@
 
     disko.url = "github:nix-community/disko/latest";
     disko.inputs.nixpkgs.follows = "nixpkgs";
+
+    nix-minecraft.url = "github:Infinidoge/nix-minecraft";
+    nix-minecraft.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = {
@@ -37,6 +40,7 @@
     vscode-server,
     nixgl,
     disko,
+    nix-minecraft,
     ...
   }: let
     pkgs-x86_64 = import nixpkgs {
@@ -144,10 +148,16 @@
             services.vscode-server.enable = true;
           }
 
+          nix-minecraft.nixosModules.minecraft-servers
+          {
+            nixpkgs.overlays = [ nix-minecraft.overlay ];
+          }
+
           ./services/factorio.nix
-          ./services/wua-mediawiki.nix
+          #./services/wua-mediawiki.nix # FIXME extensions should use git
           ./services/matchbox.nix
-          ./services/minecraft.nix
+          ./services/minecraft/vanilla.nix
+          ./services/minecraft/gtnh
         ];
       };
     };
