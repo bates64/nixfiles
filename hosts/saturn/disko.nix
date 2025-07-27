@@ -5,7 +5,12 @@ let
     name = diskName;
     settings = {
       allowDiscards = true;
-      crypttabExtraOpts = ["fido2-device=auto" "token-timeout=10"];
+      crypttabExtraOpts = [
+        "fido2-device=auto"
+        "fido2-uv=false"
+        "fido2-up=false"
+        "token-timeout=10"
+      ];
     };
     inherit content;
   };
