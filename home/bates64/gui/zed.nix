@@ -6,9 +6,10 @@
       "catppuccin"
       "nix"
       "toml"
+      "lua"
     ];
     userSettings = {
-      server_url = "https://disable-zed-downloads.invalid"; # https://github.com/zed-industries/zed/issues/12589
+      #server_url = "https://disable-zed-downloads.invalid"; # https://github.com/zed-industries/zed/issues/12589
       assistant = {
         enabled = true;
         version = "2";
@@ -63,6 +64,15 @@
           ];
           formatter.external.command = lib.getExe pkgs.nixfmt-rfc-style;
         };
+        Lua = {
+          formatter = "language_server";
+          inlay_hints = {
+            enabled = true;
+            show_type_hints = true;
+            show_parameter_hints = true;
+            show_other_hints = true;
+          };
+        };
       };
       lsp = {
         rust-analyzer = {
@@ -76,11 +86,36 @@
             path = lib.getExe pkgs.nixd;
           };
         };
+        clangd = {
+          binary = {
+            path = "${pkgs.clang-tools}/bin/clangd";
+            arguments = [
+              "--background-index"
+              "--background-index-priority=background"
+              "--clang-tidy"
+              "--header-insertion=iwyu"
+              "--header-insertion-decorators"
+              "--experimental-modules-support"
+              "--rename-file-limit=0"
+              "--enable-config"
+              "--query-driver=/nix/store/**/*"
+            ];
+          };
+          initialization_options = {
+            fallbackFlags = [
+              "-std=c++20"
+              "-std=c11"
+            ];
+          };
+        };
       };
-      vim_mode = true;
-      relative_line_numbers = true;
+
+      vim_mode = false;
+      relative_line_numbers = false;
+
       load_direnv = "shell_hook";
       base_keymap = "VSCode";
+
       theme = {
         mode = "system";
         light = "Catppuccin Latte";
@@ -91,7 +126,12 @@
       ui_font_size = 13;
       buffer_font_family = "FiraCode Nerd Font Mono";
       buffer_font_size = 13;
-    };
 
+      wrap_guides = [80 120];
+    };
   };
+
+  # https://wiki.nixos.org/wiki/Zed#Remote_Server
+  # note: client and server versions must match
+  home.file.".zed_server".source = "${pkgs.zed-editor.remote_server}/bin";
 }

@@ -16,8 +16,8 @@ in {
     ./aerospace
     ./polybar.nix
     ./wezterm # TODO: migrate to ghostty, once darwin is fixed
-    #./ghostty.nix
-    #./zed.nix
+    ./ghostty.nix
+    ./zed.nix
   ];
 
   programs.vscode = {

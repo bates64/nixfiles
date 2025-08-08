@@ -136,7 +136,7 @@ in
   };
 
   # Enable flakes
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [ "nix-command" "flakes" "ca-derivations" ];
 
   nix.settings.trusted-users = [ "root" "bates64" ];
 

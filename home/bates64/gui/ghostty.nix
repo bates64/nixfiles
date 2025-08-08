@@ -1,6 +1,6 @@
 { config, ... }: {
   programs.ghostty = {
-    enable = true;
+    enable = !config.isMacOS; # currently broken
     installVimSyntax = true;
 
     # shell integrations needed for nix develop
