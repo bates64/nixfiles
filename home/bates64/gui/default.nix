@@ -20,14 +20,6 @@ in {
     #./zed.nix
   ];
 
-  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-    "vscode" "code"
-    "spotify"
-    "discord"
-    "aseprite"
-    "nvidia"
-  ];
-
   programs.vscode = {
     enable = true;
 
@@ -42,11 +34,7 @@ in {
 
   home.packages = with pkgs; [
     nerd-fonts.fira-code
-    spotify
-    (discord.override {
-      withOpenASAR = !config.isMacOS;
-      withVencord = !config.isMacOS;
-    })
+    vesktop
     ares-wrapped
   ] ++ (if config.isMacOS then [] else with pkgs; [
     aseprite # TODO: maintain darwin package

@@ -12,6 +12,9 @@
     home-manager.url = "github:nix-community/home-manager/release-25.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
+    nix-darwin.url = "github:nix-darwin/nix-darwin/nix-darwin-25.05";
+    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
+
     nixvim.url = "github:nix-community/nixvim/nixos-25.05";
     nixvim.inputs.nixpkgs.follows = "nixpkgs";
   
@@ -36,6 +39,7 @@
     minegrub-world-sel-theme,
     minecraft-plymouth-theme,
     home-manager,
+    nix-darwin,
     nixvim,
     vscode-server,
     nixgl,
@@ -55,20 +59,12 @@
     };
   in {
     homeConfigurations = {
-      bates64 = home-manager.lib.homeManagerConfiguration {
-        pkgs = pkgs-x86_64;
-        modules = [ ./home/bates64/gui ];
-      };
       alebat01 = home-manager.lib.homeManagerConfiguration {
         pkgs = pkgs-x86_64;
         modules = [ ./home/alebat01/home.nix ];
       };
-    };
+    };     
     packages.aarch64-darwin.homeConfigurations = {
-      bates64 = home-manager.lib.homeManagerConfiguration {
-        pkgs = pkgs-aarch64-darwin;
-        modules = [ ./home/bates64/gui { isMacOS = true; } ];
-      };
       alebat01 = home-manager.lib.homeManagerConfiguration {
         pkgs = pkgs-aarch64-darwin;
         modules = [ ./home/alebat01/home.nix { isMacOS = true; } ];
@@ -128,6 +124,7 @@
       };
       apollo = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
+        pkgs = pkgs-x86_64;
         modules = [
           ./hosts/apollo/configuration.nix
           ./tasks/auto-upgrade.nix
@@ -160,6 +157,22 @@
           ./services/minecraft/gtnh
         ];
       };
+    };
+    darwinConfigurations."mba15" = nix-darwin.lib.darwinSystem {
+      pkgs = pkgs-aarch64-darwin;
+      modules = [
+        ./hosts/mba15/configuration.nix
+
+        home-manager.darwinModules.home-manager
+        {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.users.bates64 = { pkgs, ...}: {
+            imports = [ ./home/bates64/gui ];
+            isMacOS = true;
+          };
+        }
+      ];
     };
   };
 }
