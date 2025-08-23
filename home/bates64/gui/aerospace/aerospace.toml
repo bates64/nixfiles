@@ -160,7 +160,7 @@ alt-shift-k = ['join-with up', 'mode main']
 alt-shift-l = ['join-with right', 'mode main']
 
 [[on-window-detected]]
-if.window-title-regex-substring = "Orion Preview"
+if.app-id = "com.kagi.kagimacOS"
 run = [ "move-node-to-workspace 1" ]
 
 [[on-window-detected]]
@@ -168,11 +168,27 @@ if.app-id = "com.tinyspeck.slackmacgap"
 run = [ "move-node-to-workspace 2" ]
 
 [[on-window-detected]]
+if.app-id = "dev.vencord.vesktop"
+run = [ "move-node-to-workspace 2" ]
+
+[[on-window-detected]]
 if.app-id = "com.microsoft.VSCode"
 run = [ "move-node-to-workspace 4" ]
 
 [[on-window-detected]]
+if.app-id = "md.obsidian"
+run = [ "move-node-to-workspace 7" ]
+
+[[on-window-detected]]
+if.app-id = "com.TickTick.task.mac"
+run = [ "move-node-to-workspace 8" ]
+
+[[on-window-detected]]
 if.app-id = "com.spotify.client"
+run = [ "move-node-to-workspace 9" ]
+
+[[on-window-detected]]
+if.app-id = "com.kagi.kagimacOS.WebApp.758E8559-F3A6-4B80-B34E-901673F85285" # SoundCloud
 run = [ "move-node-to-workspace 9" ]
 
 [[on-window-detected]]
