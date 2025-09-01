@@ -58,19 +58,9 @@
       config.allowUnfree = true;
     };
   in {
-    homeConfigurations = {
-      alebat01 = home-manager.lib.homeManagerConfiguration {
-        pkgs = pkgs-x86_64;
-        modules = [ ./home/alebat01/home.nix ];
-      };
-    };     
-    packages.aarch64-darwin.homeConfigurations = {
-      alebat01 = home-manager.lib.homeManagerConfiguration {
-        pkgs = pkgs-aarch64-darwin;
-        modules = [ ./home/alebat01/home.nix { isMacOS = true; } ];
-      };
-    };
+    # 
     nixosConfigurations = {
+      # PC
       saturn = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         pkgs = pkgs-x86_64;
@@ -122,6 +112,7 @@
           }
         ];
       };
+      # Hetzner VPS
       apollo = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         pkgs = pkgs-x86_64;
@@ -158,20 +149,51 @@
         ];
       };
     };
-    darwinConfigurations."mba15" = nix-darwin.lib.darwinSystem {
-      pkgs = pkgs-aarch64-darwin;
-      modules = [
-        ./hosts/mba15/configuration.nix
 
-        home-manager.darwinModules.home-manager
-        {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.users.bates64 = { pkgs, ...}: {
-            imports = [ ./home/bates64/gui ];
-            isMacOS = true;
-          };
-        }
+    # Laptops
+    darwinConfigurations = {
+      # Macbook Air 15
+      mba15 = nix-darwin.lib.darwinSystem {
+        pkgs = pkgs-aarch64-darwin;
+        modules = [
+          ./hosts/mba15/configuration.nix
+
+          home-manager.darwinModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.bates64 = { ... }: {
+              imports = [ ./home/bates64/gui ];
+              isMacOS = true;
+            };
+          }
+        ];
+      };
+      # (Work) Macbook Pro
+      "FH91CFY4QP-2" = nix-darwin.lib.darwinSystem {
+        pkgs = pkgs-aarch64-darwin;
+        modules = [
+          ./hosts/work-mbp/configuration.nix
+
+          home-manager.darwinModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.alebat01 = { ... }: {
+              imports = [ ./home/alebat01/home.nix ];
+              isMacOS = true;
+            };
+          }
+        ];
+      };
+    };
+
+    # (Work) Headless machine
+    homeConfigurations.alebat01 = home-manager.lib.homeManagerConfiguration {
+      pkgs = pkgs-x86_64;
+      modules = [
+        ./home/alebat01/home.nix # TODO: no need for GUI
+        ./home/alebat01/auto-upgrade.nix
       ];
     };
   };
