@@ -13,6 +13,7 @@
       cat = "${pkgs.bat}/bin/bat";
       amend = "git commit --amend --no-edit";
       fd = "${pkgs.fd}/bin/fd";
+      nix = "noglob nix"; # prevent '#' expansion
     };
     initExtra = ''
       eval "$(${pkgs.thefuck}/bin/thefuck --alias)"
