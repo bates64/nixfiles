@@ -36,7 +36,8 @@ in {
     nerd-fonts.fira-code
     vesktop
     ares-wrapped
-    unofficial-homestuck-collection
+    # 25.11
+    #nofficial-homestuck-collection
   ] ++ (if config.isMacOS then [] else with pkgs; [
     aseprite # TODO: maintain darwin package
   ]);
