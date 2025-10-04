@@ -71,6 +71,10 @@
           minegrub-world-sel-theme.nixosModules.default
           disko.nixosModules.disko
 
+          {
+            programs.nix-ld.enable = true;
+          }
+
           # Splash
           {
             boot = {
