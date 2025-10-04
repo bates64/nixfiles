@@ -7,6 +7,7 @@
       pu = "push";
       co = "checkout";
       cm = "commit";
+      sync = "submodule update --init --recursive";
     };
     extraConfig = {
       core = {
