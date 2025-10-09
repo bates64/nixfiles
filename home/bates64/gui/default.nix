@@ -36,6 +36,7 @@ in {
     nerd-fonts.fira-code
     vesktop
     ares-wrapped
+    obsidian
     # 25.11
     #nofficial-homestuck-collection
   ] ++ (if config.isMacOS then [] else with pkgs; [
