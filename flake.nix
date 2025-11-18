@@ -69,6 +69,7 @@
           ./tasks/auto-upgrade.nix
           ./tasks/gc.nix
           minegrub-world-sel-theme.nixosModules.default
+          minecraft-plymouth-theme.nixosModules.default
           disko.nixosModules.disko
 
           {
@@ -80,10 +81,7 @@
             boot = {
               plymouth = {
                 enable = true;
-                theme = "mc";
-                themePackages = [
-                  minecraft-plymouth-theme.defaultPackage.x86_64-linux
-                ];
+                plymouth-minecraft-theme.enable = true;
               };
 
               # Enable "Silent boot"
