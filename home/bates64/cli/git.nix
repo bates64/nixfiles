@@ -1,4 +1,5 @@
-{ lib, pkgs, ... }: {
+{ lib, pkgs, ... }:
+{
   programs.git = {
     enable = true;
     userName = "Alex Bates";
@@ -69,4 +70,19 @@
       gh-poi # `gh poi` to delete local branches that have been merged
     ];
   };
+
+  programs.jujutsu = {
+    enable = true;
+    settings = {
+      user.name = "Alex Bates";
+      user.email = lib.mkDefault "alex@bates64.com";
+      ui.movement.edit = true;
+      ui.editor = "zeditor --wait";
+      fsmonitor.backend = "watchman";
+      fsmonitor.watchman.register-snapshot-trigger = true;
+      revset-aliases."immutable_heads()" = "builtin_immutable_heads() | (trunk().. & ~mine())"; # make others commits immutable
+    };
+  };
+
+  home.packages = [ pkgs.watchman ]; # for programs.jujutsu.settings.fsmonitor.backend
 }
