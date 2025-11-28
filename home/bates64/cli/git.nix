@@ -2,15 +2,15 @@
 {
   programs.git = {
     enable = true;
-    userName = "Alex Bates";
-    userEmail = lib.mkDefault "alex@bates64.com";
-    aliases = {
-      pu = "push";
-      co = "checkout";
-      cm = "commit";
-      sync = "submodule update --init --recursive";
-    };
-    extraConfig = {
+    settings = {
+      user.name = "Alex Bates";
+      user.email = lib.mkDefault "alex@bates64.com";
+      aliases = {
+        pu = "push";
+        co = "checkout";
+        cm = "commit";
+        sync = "submodule update --init --recursive";
+      };
       core = {
         excludesfile = "~/.config/git/gitignore";
         fsmonitor = true;
@@ -53,14 +53,6 @@
       help.autocorrect = "prompt";
     };
     maintenance.enable = true;
-    delta = {
-      enable = true;
-      options = {
-        side-by-side = true;
-        line-numbers = true;
-        hyperlinks = true;
-      };
-    };
   };
   home.file.".config/git/gitignore".source = ./gitignore;
 

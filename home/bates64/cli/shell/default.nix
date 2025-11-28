@@ -15,8 +15,7 @@
       fd = "${pkgs.fd}/bin/fd";
       nix = "noglob nix"; # prevent '#' expansion
     };
-    initExtra = ''
-      eval "$(${pkgs.thefuck}/bin/thefuck --alias)"
+    initContent = ''
       eval "$(${pkgs.mcfly}/bin/mcfly init zsh)"
     '';
     plugins = with pkgs; [
@@ -73,8 +72,6 @@
     enableZshIntegration = true;
   };
 
-  programs.thefuck.enable = true;
-
   programs.zoxide.enable = true;
 
   # lorri > nix-direnv, but lorri is not available on macOS
@@ -84,5 +81,8 @@
   };
   services.lorri.enable = !config.isMacOS;
 
-  home.packages = with pkgs; [ mosh nixd ];
+  home.packages = with pkgs; [
+    mosh
+    nixd
+  ];
 }

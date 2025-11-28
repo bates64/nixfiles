@@ -4,17 +4,21 @@
 #     man configuration.nix
 #     nixos-help
 
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 let
   minimal = false;
 in
 {
-  imports =
-    [
-      ./disko.nix
-      #./8bitdo.nix
-    ];
+  imports = [
+    ./disko.nix
+    #./8bitdo.nix
+  ];
 
   boot.loader.grub = {
     enable = true;
@@ -23,15 +27,17 @@ in
     enableCryptodisk = true;
     minegrub-world-sel = {
       enable = true;
-      customIcons = [{
-        name = "nixos";
-        lineTop = "NixOS";
-        lineBottom = "Spectator Mode, Cheats";
-        customImg = builtins.path {
-          path = ./nixos-logo.png;
-          name = "nixos-img";
-        };
-      }];
+      customIcons = [
+        {
+          name = "nixos";
+          lineTop = "NixOS";
+          lineBottom = "Spectator Mode, Cheats";
+          customImg = builtins.path {
+            path = ./nixos-logo.png;
+            name = "nixos-img";
+          };
+        }
+      ];
     };
   };
 
@@ -91,8 +97,8 @@ in
   services.printing.enable = !minimal;
 
   # Enable sound with pipewire.
-  hardware.pulseaudio.enable = false;
-  hardware.pulseaudio.support32Bit = true;
+  services.pulseaudio.enable = false;
+  services.pulseaudio.support32Bit = true;
   security.rtkit.enable = true;
   services.pipewire = lib.mkIf (!minimal) {
     enable = true;
@@ -117,7 +123,6 @@ in
     };
   };
 
-
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
@@ -127,7 +132,12 @@ in
   users.users.bates64 = {
     isNormalUser = true;
     description = "Alex Bates";
-    extraGroups = [ "networkmanager" "wheel" "docker" "audio" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "docker"
+      "audio"
+    ];
     shell = pkgs.zsh;
     packages = with pkgs; [
     ];
@@ -135,9 +145,16 @@ in
   };
 
   # Enable flakes
-  nix.settings.experimental-features = [ "nix-command" "flakes" "ca-derivations" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+    "ca-derivations"
+  ];
 
-  nix.settings.trusted-users = [ "root" "bates64" ];
+  nix.settings.trusted-users = [
+    "root"
+    "bates64"
+  ];
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -181,14 +198,14 @@ in
   hardware.graphics.extraPackages = with pkgs; [
     intel-media-driver
     libvdpau-va-gl
-    vaapiIntel
-    vaapiVdpau
+    intel-vaapi-driver
+    libva-vdpau-driver
     vulkan-tools
     vulkan-validation-layers
   ];
 
   # Load nvidia driver for Xorg and Wayland
-  services.xserver.videoDrivers = lib.mkIf (!minimal) ["nvidia"];
+  services.xserver.videoDrivers = lib.mkIf (!minimal) [ "nvidia" ];
 
   hardware.nvidia = lib.mkIf (!minimal) {
     modesetting.enable = true;
@@ -200,13 +217,15 @@ in
 
   boot.kernelParams = [ "nvidia.NVreg_PreserveVideoMemoryAllocations=1" ];
 
-  boot.extraModulePackages = with config.boot.kernelPackages; lib.mkIf (!minimal) [
-    nvidia_x11
-    ddcci-driver # for brightness control
-  ];
+  boot.extraModulePackages =
+    with config.boot.kernelPackages;
+    lib.mkIf (!minimal) [
+      nvidia_x11
+      ddcci-driver # for brightness control
+    ];
 
   powerManagement.enable = !minimal; # For sleep and hibernate
-  
+
   programs.hyprland = lib.mkIf (!minimal) {
     enable = true;
     xwayland.enable = true;
