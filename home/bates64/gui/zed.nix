@@ -127,11 +127,16 @@
       buffer_font_family = "FiraCode Nerd Font Mono";
       buffer_font_size = 13;
 
-      wrap_guides = [80 120];
+      wrap_guides = [
+        80
+        120
+      ];
     };
   };
 
   # https://wiki.nixos.org/wiki/Zed#Remote_Server
   # note: client and server versions must match
   home.file.".zed_server".source = "${pkgs.zed-editor.remote_server}/bin";
+
+  programs.zsh.shellAliases.zed = "zeditor";
 }
