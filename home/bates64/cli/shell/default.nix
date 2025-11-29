@@ -84,5 +84,6 @@
   home.packages = with pkgs; [
     mosh
     nixd
+    codex
   ];
 }
