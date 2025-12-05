@@ -162,6 +162,7 @@
           pkgs = pkgs-aarch64-darwin;
           modules = [
             ./hosts/mba15/configuration.nix
+            ./hosts/darwin.nix
 
             home-manager.darwinModules.home-manager
             {
@@ -181,6 +182,7 @@
           pkgs = pkgs-aarch64-darwin;
           modules = [
             ./hosts/work-mbp/configuration.nix
+            ./hosts/darwin.nix
 
             home-manager.darwinModules.home-manager
             {
