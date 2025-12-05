@@ -21,10 +21,8 @@ in
   imports = [
     ../cli
     ./gl.nix
-    ./rofi.nix
-    ./bspwm
+    ./niri
     ./aerospace
-    ./polybar.nix
     ./ghostty
     ./zed.nix
     ./browser.nix
@@ -69,5 +67,4 @@ in
         ]
     );
 
-  fonts.fontconfig.defaultFonts.monospace = [ "FiraCode Nerd Font Mono" ];
 }

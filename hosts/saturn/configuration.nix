@@ -79,12 +79,6 @@ in
     LC_TIME = "en_GB.UTF-8";
   };
 
-  # Plasma 6
-  services.xserver.enable = !minimal;
-  services.displayManager.sddm.enable = !minimal;
-  services.displayManager.sddm.wayland.enable = !minimal;
-  services.desktopManager.plasma6.enable = !minimal;
-
   # Configure keymap in X11
   services.xserver = {
     xkb.layout = "us";
@@ -226,10 +220,16 @@ in
 
   powerManagement.enable = !minimal; # For sleep and hibernate
 
-  programs.hyprland = lib.mkIf (!minimal) {
-    enable = true;
-    xwayland.enable = true;
+  # Start niri immediately without login prompt
+  programs.niri.enable = true;
+  services.getty = {
+    autologinUser = "bates64";
+    autologinOnce = true;
   };
+  environment.loginShellInit = ''
+    [[ "$(tty)" == /dev/tty1 ]] && niri
+  '';
+  security.pam.services.swaylock = { };
 
   # Hint electron apps to use wayland
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
