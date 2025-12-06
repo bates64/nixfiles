@@ -32,6 +32,18 @@
 
     nix-minecraft.url = "github:Infinidoge/nix-minecraft";
     nix-minecraft.inputs.nixpkgs.follows = "nixpkgs";
+
+    zen-browser = {
+      url = "github:0xc000022070/zen-browser-flake/beta";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        home-manager.follows = "home-manager";
+      };
+    };
+    firefox-addons = {
+      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -47,7 +59,7 @@
       disko,
       nix-minecraft,
       ...
-    }:
+    }@inputs:
     let
       pkgs-x86_64 = import nixpkgs {
         system = "x86_64-linux";
@@ -106,6 +118,7 @@
               home-manager.useUserPackages = true;
               home-manager.users.bates64 = ./home/bates64/gui;
               home-manager.backupFileExtension = "backup";
+              home-manager.extraSpecialArgs = { inherit inputs; };
             }
 
             nixvim.nixosModules.nixvim
@@ -174,6 +187,7 @@
                   imports = [ ./home/bates64/gui ];
                   isMacOS = true;
                 };
+              home-manager.extraSpecialArgs = { inherit inputs; };
             }
           ];
         };
@@ -194,6 +208,7 @@
                   imports = [ ./home/alebat01/home.nix ];
                   isMacOS = true;
                 };
+              home-manager.extraSpecialArgs = { inherit inputs; };
             }
           ];
         };
