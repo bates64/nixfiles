@@ -117,7 +117,7 @@
       base_keymap = "VSCode";
 
       theme = {
-        mode = "system";
+        mode = "dark";
         light = "Catppuccin Latte";
         dark = "Catppuccin Mocha";
       };

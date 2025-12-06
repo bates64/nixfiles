@@ -10,7 +10,7 @@
 
     settings = {
       theme = "Catppuccin Mocha";
-      font-size = 14;
+      font-size = 12;
       background-opacity = 0.8;
       background-blur-radius = 60;
       window-padding-x = 4;
@@ -25,10 +25,11 @@
       cursor-click-to-move = true;
       link-url = true;
       custom-shader = [
-        (toString ./cursor_warp.glsl)
-        (toString ./bloom.glsl)
-        (toString ./bettercrt.glsl)
+        #(toString ./cursor_warp.glsl)
+        #(toString ./bloom.glsl)
+        #(toString ./bettercrt.glsl)
       ];
+      gtk-single-instance = true;
     };
   };
 }
