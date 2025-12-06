@@ -227,7 +227,7 @@ in
     autologinOnce = true;
   };
   environment.loginShellInit = ''
-    [[ "$(tty)" == /dev/tty1 ]] && niri
+    [[ "$(tty)" == /dev/tty1 ]] && niri-session
   '';
   security.pam.services.swaylock = { };
 
