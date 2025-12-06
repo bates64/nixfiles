@@ -25,8 +25,7 @@ in
     ./bspwm
     ./aerospace
     ./polybar.nix
-    ./wezterm # TODO: migrate to ghostty, once darwin is fixed
-    ./ghostty.nix
+    ./ghostty
     ./zed.nix
     ./browser.nix
   ];

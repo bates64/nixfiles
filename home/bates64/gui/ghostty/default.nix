@@ -1,17 +1,18 @@
-{ config, ... }: {
+{ config, pkgs, ... }:
+{
   programs.ghostty = {
-    enable = !config.isMacOS; # currently broken
-    installVimSyntax = true;
+    enable = true;
+    package = if config.isMacOS then pkgs.ghostty-bin else pkgs.ghostty;
 
     # shell integrations needed for nix develop
     enableBashIntegration = true;
     enableZshIntegration = true;
 
     settings = {
-      theme = "catppuccin-mocha";
-      font-size = 10;
-      background-opacity = if config.isMacOS then 0.4 else 1.0;
-      background-blur-radius = 20;
+      theme = "Catppuccin Mocha";
+      font-size = 14;
+      background-opacity = 0.8;
+      background-blur-radius = 60;
       window-padding-x = 4;
       window-padding-y = 4;
       window-padding-balance = true;
@@ -21,6 +22,13 @@
       copy-on-select = false;
       macos-titlebar-style = "tabs";
       auto-update = "off";
+      cursor-click-to-move = true;
+      link-url = true;
+      custom-shader = [
+        (toString ./cursor_warp.glsl)
+        (toString ./bloom.glsl)
+        (toString ./bettercrt.glsl)
+      ];
     };
   };
 }
