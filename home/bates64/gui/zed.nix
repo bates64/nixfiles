@@ -2,7 +2,7 @@
 {
   home.packages = with pkgs; [
     clang-tools
-    rust-analyzer
+    rustup
     nixfmt-rfc-style
     nodejs
   ];
