@@ -1,9 +1,11 @@
 {
   programs.ssh = {
     enable = true;
-    serverAliveInterval = 10;
-    serverAliveCountMax = 6;
     matchBlocks = {
+      "*" = {
+        serverAliveInterval = 10;
+        serverAliveCountMax = 6;
+      };
       pc = {
         hostname = "10.2.13.87";
       };
