@@ -1,5 +1,12 @@
 { pkgs, lib, ... }:
 {
+  home.packages = with pkgs; [
+    clang-tools
+    rust-analyzer
+    nixfmt-rfc-style
+    nodejs
+  ];
+
   programs.zed-editor = {
     enable = true;
     extensions = [
@@ -15,8 +22,8 @@
       };
 
       node = {
-        path = lib.getExe pkgs.nodejs;
-        npm_path = lib.getExe' pkgs.nodejs "npm";
+        path = "node";
+        npm_path = "npm";
       };
 
       #hour_format = "hour24";
@@ -52,7 +59,7 @@
             "nixd"
             "!nil"
           ];
-          formatter.external.command = lib.getExe pkgs.nixfmt-rfc-style;
+          formatter.external.command = "nixfmt";
         };
         Lua = {
           formatter = "language_server";
@@ -67,7 +74,7 @@
       lsp = {
         rust-analyzer = {
           binary = {
-            path = lib.getExe pkgs.rust-analyzer;
+            path = "rust-analyzer";
           };
           initialization_options.check.command = "clippy";
         };
@@ -78,7 +85,7 @@
         };
         clangd = {
           binary = {
-            path = "${pkgs.clang-tools}/bin/clangd";
+            path = "clangd";
             arguments = [
               "--background-index"
               "--background-index-priority=background"
@@ -101,7 +108,7 @@
       };
 
       vim_mode = false;
-      relative_line_numbers = false;
+      relative_line_numbers = "disabled";
 
       load_direnv = "shell_hook";
       base_keymap = "VSCode";
@@ -112,13 +119,14 @@
         dark = "Catppuccin Mocha";
       };
       project_panel.dock = "right";
-      #ui_font_family = "FiraCode Nerd Font Mono";
+      ui_font_family = "FiraCode Nerd Font Mono";
       ui_font_size = 13;
       buffer_font_family = "FiraCode Nerd Font Mono";
       buffer_font_size = 13;
 
       wrap_guides = [
         80
+        100
         120
       ];
     };
