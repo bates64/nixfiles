@@ -18,5 +18,18 @@
     home.stateVersion = "24.05";
 
     programs.home-manager.enable = true;
+
+    programs.zed-editor.userSettings = {
+      default_model.provider = "openai";
+      language_models.openai.api_url = "https://openai-api-proxy.geo.arm.com/api/providers/openai/v1";
+
+      ssh_connections = [
+        {
+          host = "pc";
+          upload_binary_over_ssh = true;
+          projects = [ { paths = [ "/data_nvme1n1/ddk" ]; } ];
+        }
+      ];
+    };
   };
 }
