@@ -229,6 +229,7 @@
           ./home/alebat01/home.nix # TODO: no need for GUI
           ./home/alebat01/auto-upgrade.nix
         ];
+        extraSpecialArgs = { inherit inputs; };
       };
     };
 }
