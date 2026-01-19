@@ -11,7 +11,6 @@
     inputs.noctalia.homeModules.default
   ];
 
-  # to use, set `programs.niri.enable = true;` in host configuration
   config = lib.mkIf (!config.isMacOS) {
     xdg.configFile."niri/config.kdl".source = ./config.kdl;
     xdg.portal.extraPortals = with pkgs; [
@@ -30,6 +29,7 @@
 
     programs.noctalia-shell = {
       enable = true;
+      systemd.enable = true;
       settings = { };
     };
   };
