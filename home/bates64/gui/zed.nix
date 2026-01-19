@@ -14,6 +14,7 @@
       "nix"
       "toml"
       "lua"
+      "starlark" # for Bazel
     ];
     userSettings = {
       #server_url = "https://disable-zed-downloads.invalid"; # https://github.com/zed-industries/zed/issues/12589
