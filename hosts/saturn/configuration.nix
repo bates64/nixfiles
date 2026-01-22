@@ -222,15 +222,19 @@ in
 
   powerManagement.enable = !minimal; # For sleep and hibernate
 
-  # Start niri immediately without login prompt
+  # Start niri via GDM
   programs.niri.enable = true;
   services.getty = {
     autologinUser = "bates64";
     autologinOnce = true;
   };
-  environment.loginShellInit = ''
-    [[ "$(tty)" == /dev/tty1 ]] && niri-session
-  '';
+  services.displayManager = {
+    gdm = {
+      enable = true;
+      wayland = true;
+      autoSuspend = false;
+    };
+  };
   security.pam.services.swaylock = { };
 
   # Hint electron apps to use wayland
