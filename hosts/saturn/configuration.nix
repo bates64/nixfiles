@@ -134,6 +134,8 @@ in
     ];
     shell = pkgs.zsh;
     packages = with pkgs; [
+      unofficial-homestuck-collection
+      prismlauncher
     ];
     initialPassword = ""; # change me
   };

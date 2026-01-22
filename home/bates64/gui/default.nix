@@ -54,8 +54,6 @@ in
       vesktop
       ares-wrapped
       obsidian
-      # 25.11
-      #nofficial-homestuck-collection
     ]
     ++ (
       if config.isMacOS then
