@@ -32,6 +32,9 @@
       ];
     };
 
-    home.packages = with pkgs; [ bazelisk ];
+    home.packages = with pkgs; [
+      codex
+      bazelisk
+    ];
   };
 }
