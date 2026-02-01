@@ -125,7 +125,7 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.bates64 = ./home/bates64/gui;
-              home-manager.backupFileExtension = "backup";
+              home-manager.backupCommand = "rm";
               home-manager.extraSpecialArgs = { inherit inputs; };
             }
 

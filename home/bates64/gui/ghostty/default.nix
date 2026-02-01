@@ -32,4 +32,6 @@
       gtk-single-instance = true;
     };
   };
+
+  xdg.configFile."ghostty/config".force = true;
 }
