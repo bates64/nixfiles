@@ -6,6 +6,8 @@
 environment {
     QT_QPA_PLATFORM "wayland"
     NIXOS_OZONE_WL "1"
+    JAVA_TOOL_OPTIONS "-Dsun.java2d.uiScale=2"
+    _JAVA_AWT_WM_NONREPARENTING "1" // xwayland-satellite blank screens
 }
 
 // Input device configuration.
