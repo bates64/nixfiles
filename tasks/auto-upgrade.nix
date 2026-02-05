@@ -8,7 +8,10 @@
       "-L" # print build logs
       "--no-write-lock-file"
     ];
-    allowReboot = true;
-    rebootWindow = { lower = "03:00"; upper = "06:00"; };
+    allowReboot = false;
+    rebootWindow = {
+      lower = "03:00";
+      upper = "06:00";
+    };
   };
 }
