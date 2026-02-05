@@ -84,11 +84,11 @@
       #
       nixosConfigurations = {
         # PC
-        saturn = nixpkgs.lib.nixosSystem {
+        merlon = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           pkgs = pkgs-x86_64;
           modules = [
-            ./hosts/saturn/configuration.nix
+            ./hosts/merlon/configuration.nix
             ./tasks/auto-upgrade.nix
             ./tasks/gc.nix
             minegrub-world-sel-theme.nixosModules.default
@@ -139,11 +139,11 @@
           ];
         };
         # Hetzner VPS
-        apollo = nixpkgs.lib.nixosSystem {
+        merlow = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           pkgs = pkgs-x86_64;
           modules = [
-            ./hosts/apollo/configuration.nix
+            ./hosts/merlow/configuration.nix
             ./tasks/auto-upgrade.nix
             ./tasks/gc.nix
 
@@ -179,10 +179,10 @@
       # Laptops
       darwinConfigurations = {
         # Macbook Air 15
-        mba15 = nix-darwin.lib.darwinSystem {
+        nolrem = nix-darwin.lib.darwinSystem {
           pkgs = pkgs-aarch64-darwin;
           modules = [
-            ./hosts/mba15/configuration.nix
+            ./hosts/nolrem/configuration.nix
             ./hosts/darwin.nix
 
             home-manager.darwinModules.home-manager

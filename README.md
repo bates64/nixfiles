@@ -7,7 +7,7 @@
 1. Install Nix and enable flakes
 2. Switch to this flake: `nixos-rebuild switch --flake github:bates64/nixfiles`
 
-To switch to a specific machine, e.g. apollo, use `github:bates64/nixfiles#apollo` as the flake URI.
+To switch to a specific machine, e.g. merlow, use `github:bates64/nixfiles#merlow` as the flake URI.
 
 ### (macOS) home-manager only
 

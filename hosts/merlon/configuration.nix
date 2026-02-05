@@ -45,7 +45,7 @@ in
   boot.initrd.luks.fido2Support = false; # disko does it with crypttab
   boot.initrd.systemd.fido2.enable = true;
 
-  networking.hostName = "saturn"; # Define your hostname.
+  networking.hostName = "merlon"; # Define your hostname.
   #networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
