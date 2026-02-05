@@ -56,9 +56,9 @@ if config.isMacOS then [ ] else [ pkgs.mold ]
 
 ### System Modules
 
-- `/tasks/` - Shared NixOS modules (auto-upgrade, garbage collection)
-- `/programs/` - System-wide programs (nixvim)
-- `/services/` - Server services (minecraft, factorio, mediawiki)
+- `/tasks/` - Shared NixOS modules
+- `/programs/` - System-wide programs
+- `/services/` - Server services
 
 ### Flake Structure
 

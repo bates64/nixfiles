@@ -136,6 +136,8 @@
             {
               services.vscode-server.enable = true;
             }
+
+            ./services/tailscale.nix
           ];
         };
         # Hetzner VPS
@@ -172,6 +174,8 @@
             ./services/matchbox.nix
             ./services/minecraft/vanilla.nix
             ./services/minecraft/gtnh
+
+            ./services/tailscale.nix
           ];
         };
       };
