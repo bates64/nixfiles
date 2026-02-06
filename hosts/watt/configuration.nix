@@ -23,11 +23,14 @@
   boot.extraModulePackages = [ ];
   boot.kernelParams = [
     "nvme_core.default_ps_max_latency_us=0"
+    "consoleblank=60"
   ];
   hardware.cpu.intel.updateMicrocode = config.hardware.enableRedistributableFirmware;
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+
+  services.logind.lidSwitch = "ignore";
 
   networking.hostName = "watt";
 
