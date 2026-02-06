@@ -21,6 +21,9 @@
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
+  boot.kernelParams = [
+    "nvme_core.default_ps_max_latency_us=0"
+  ];
   hardware.cpu.intel.updateMicrocode = config.hardware.enableRedistributableFirmware;
 
   boot.loader.systemd-boot.enable = true;
