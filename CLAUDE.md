@@ -38,6 +38,7 @@ Hosts are named after Paper Mario shamen/mystics and they roughly reflect what t
 |------|----------|-------|
 | merlon | NixOS x86_64 | Desktop with Nvidia GPU, Wayland (Niri), FIDO2 disk encryption |
 | merlow | NixOS x86_64 | Hetzner VPS, headless server |
+| watt | NixOS x86_64 | Homelab MacBook Pro, headless, Home Assistant |
 | nolrem | nix-darwin aarch64 | MacBook Air |
 | FH91CFY4QP-2 | nix-darwin aarch64 | Work MacBook, uses `alebat01` user |
 

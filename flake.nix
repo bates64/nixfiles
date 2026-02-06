@@ -178,6 +178,29 @@
             ./services/tailscale.nix
           ];
         };
+        # Homelab
+        watt = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          pkgs = pkgs-x86_64;
+          modules = [
+            disko.nixosModules.disko
+            ./hosts/watt/configuration.nix
+            ./tasks/auto-upgrade.nix
+            ./tasks/gc.nix
+
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.bates64 = ./home/bates64/cli;
+            }
+
+            nixvim.nixosModules.nixvim
+            ./programs/nixvim.nix
+
+            ./services/tailscale.nix
+          ];
+        };
       };
 
       # Laptops
