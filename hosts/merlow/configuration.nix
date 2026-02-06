@@ -1,14 +1,14 @@
-# Edit this configuration file to define what should be installed on
-# your system. Help is available in the configuration.nix(5) man page, on
-# https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
-
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  imports = [
+    ./hardware-configuration.nix
+  ];
 
   # Use the GRUB 2 boot loader.
   boot.loader.grub.enable = true;
@@ -38,9 +38,6 @@
   # Enable the X11 windowing system.
   # services.xserver.enable = true;
 
-
-  
-
   # Configure keymap in X11
   # services.xserver.xkb.layout = "us";
   # services.xserver.xkb.options = "eurosign:e,caps:escape";
@@ -59,51 +56,51 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.libinput.enable = true;
 
-  # Allow --target-host to be used with nixos-rebuild.
-  nix.settings.trusted-users = [ "root" "@wheel" ];
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.bates64 = {
-     isNormalUser = true;
-     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
-     packages = with pkgs; [
-     ];
-     openssh.authorizedKeys.keys = [
-       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINsDTVCIkcFjkaDm5RoWG1uSNJBanUWGmoKHIRHvSsQq alex@bates64.com"
-     ];
+    isNormalUser = true;
+    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    packages = with pkgs; [
+    ];
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINsDTVCIkcFjkaDm5RoWG1uSNJBanUWGmoKHIRHvSsQq alex@bates64.com"
+    ];
   };
   users.users.spchee = {
-     isNormalUser = true;
-     packages = with pkgs; [
-     ];
-     openssh.authorizedKeys.keys = [
-       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFA5ZPLnyiC8WnU8qm14WltVrQVMIHG8rRy0IG3OC+VK spchee@k55"
-     ];
+    isNormalUser = true;
+    packages = with pkgs; [
+    ];
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFA5ZPLnyiC8WnU8qm14WltVrQVMIHG8rRy0IG3OC+VK spchee@k55"
+    ];
   };
   users.users.emily = {
-     isNormalUser = true;
-     packages = with pkgs; [
-     ];
-     openssh.authorizedKeys.keys = [
-       "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDNtA6RJe0WsRGMmDzJzu5tbyEg0wCxLsjww1W/pTyiW/3PD5Czyv7tJrjJU/5m971qu+LWd/nN4Ce1KK6qOywsvOqBcixl+O5otxqsDLQ/jBSQLfbR5swCttBS+mBlvzNzdBitAUaNYSpbvdGWG6mwRoX6TMB3FRowrZYdUUvo/wcB2ijxA67b9bwxSkRvcv6xvbUjlTBBZcBf/9WIj+kd0tgiKG+w5hQJxeiadr9bDcBqzxteJJXL6wxB9puEWvhKQpu9CjmfuyQrcKr1FibFYihDXxWg/i14FBWOWWWx7djUGoal4i5sAZXOT6fzurSBG5Fv0kJHNVuQ/ewQr7bwL6qSAzSb5fO4K1FlP4vdS+GU9pg9byVdzxushCUX09pwNao6jg+nJq0caa4PeOviOZ1pWlkZeCXX2NOamk1q1emLaRV9XW/20DZtB57bQ1FfjmpfN3Hs1vnsSbYyUsI0X70I5IpPPFO2whmmXiRw59VHZ1yWjg9eiwFaUR864VE= emily@Firethorn"
-     ];
+    isNormalUser = true;
+    packages = with pkgs; [
+    ];
+    openssh.authorizedKeys.keys = [
+      "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDNtA6RJe0WsRGMmDzJzu5tbyEg0wCxLsjww1W/pTyiW/3PD5Czyv7tJrjJU/5m971qu+LWd/nN4Ce1KK6qOywsvOqBcixl+O5otxqsDLQ/jBSQLfbR5swCttBS+mBlvzNzdBitAUaNYSpbvdGWG6mwRoX6TMB3FRowrZYdUUvo/wcB2ijxA67b9bwxSkRvcv6xvbUjlTBBZcBf/9WIj+kd0tgiKG+w5hQJxeiadr9bDcBqzxteJJXL6wxB9puEWvhKQpu9CjmfuyQrcKr1FibFYihDXxWg/i14FBWOWWWx7djUGoal4i5sAZXOT6fzurSBG5Fv0kJHNVuQ/ewQr7bwL6qSAzSb5fO4K1FlP4vdS+GU9pg9byVdzxushCUX09pwNao6jg+nJq0caa4PeOviOZ1pWlkZeCXX2NOamk1q1emLaRV9XW/20DZtB57bQ1FfjmpfN3Hs1vnsSbYyUsI0X70I5IpPPFO2whmmXiRw59VHZ1yWjg9eiwFaUR864VE= emily@Firethorn"
+    ];
   };
   users.users.agi = {
-     isNormalUser = true;
-     packages = with pkgs; [
-     ];
-     openssh.authorizedKeys.keys = [
-       "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDSgPm3xPWH/Tb2yWC6j23umV1IJJXSDnEFAduXdytjQ6fN6I8h81WSQEJB2b1PRIca45kAN5m6HmCFz1Jht5/r5Np8GZbofHO7BWdnJKgStjjttGxs7lCuYbjXS66+sl5lEaNxvTU26hstV4E2acdnRokcZW8DYqET0Ssm6FY/P2xn4t1JhlbEJNnci2CX8jp6q4f44Vlzqocv/WLT+5gbZvM9PP2CkVU0H3gKyRN6Tllh3fEDYt+86XsQ54upfOLtMvpDkFabIZisdWsJb5QhFbHdqeqcaxGErpKLpuOszeF0iXvkbga4Qmxtlfh1CPi5PKJ5yVteyqGRxWh+AWFsHwPbh15CM4dFpYCQRCJ/Y4EpbKRjTS3jFX7kaGuWHl0wKH+adbnV6CJBmWFpzQaYgfAiZnQ9Vs6DYhP46bk8SMXEZWM9VH//Fv2UsYhD5T/1P01TATHtl0x2Nx8K2xKLgVQpVyDBaRc/adPHMLxFscc7grGd68Zp2xxrguHsq4s= agi@LAPTOP-9RFHQEDO"
-     ];
+    isNormalUser = true;
+    packages = with pkgs; [
+    ];
+    openssh.authorizedKeys.keys = [
+      "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDSgPm3xPWH/Tb2yWC6j23umV1IJJXSDnEFAduXdytjQ6fN6I8h81WSQEJB2b1PRIca45kAN5m6HmCFz1Jht5/r5Np8GZbofHO7BWdnJKgStjjttGxs7lCuYbjXS66+sl5lEaNxvTU26hstV4E2acdnRokcZW8DYqET0Ssm6FY/P2xn4t1JhlbEJNnci2CX8jp6q4f44Vlzqocv/WLT+5gbZvM9PP2CkVU0H3gKyRN6Tllh3fEDYt+86XsQ54upfOLtMvpDkFabIZisdWsJb5QhFbHdqeqcaxGErpKLpuOszeF0iXvkbga4Qmxtlfh1CPi5PKJ5yVteyqGRxWh+AWFsHwPbh15CM4dFpYCQRCJ/Y4EpbKRjTS3jFX7kaGuWHl0wKH+adbnV6CJBmWFpzQaYgfAiZnQ9Vs6DYhP46bk8SMXEZWM9VH//Fv2UsYhD5T/1P01TATHtl0x2Nx8K2xKLgVQpVyDBaRc/adPHMLxFscc7grGd68Zp2xxrguHsq4s= agi@LAPTOP-9RFHQEDO"
+    ];
   };
   users.users.eva = {
     isNormalUser = true;
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOUw/qbJt3LkMvj9bHry1AKfO0eHzfzH0ndoC5ddlZtc elc20@DESKTOP-QBR7O1S"
     ];
-  }; 
+  };
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   nixpkgs.config.allowUnfree = true;
 
@@ -131,7 +128,6 @@
     settings.PasswordAuthentication = false;
     settings.KbdInteractiveAuthentication = false;
   };
-
 
   services.nginx.enable = true;
   services.nginx.virtualHosts."bates64.com" = {
