@@ -22,7 +22,7 @@ in
     ../cli
     ./gl.nix
     ./niri
-    ./aerospace
+    ./hammerspoon
     ./ghostty
     ./zed.nix
     ./browser.nix
