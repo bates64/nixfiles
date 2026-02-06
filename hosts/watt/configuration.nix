@@ -45,12 +45,6 @@
     ];
   };
 
-  # Allow --target-host to be used with nixos-rebuild.
-  nix.settings.trusted-users = [
-    "root"
-    "@wheel"
-  ];
-
   # Not publicly accessible, so disable firewall.
   networking.firewall.enable = false;
 
