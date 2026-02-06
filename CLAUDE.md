@@ -34,32 +34,33 @@ Hosts are named after Paper Mario shamen/mystics and they roughly reflect what t
 
 ### Hosts (`/hosts/`)
 
-| Host | Platform | Notes |
-|------|----------|-------|
-| merlon | NixOS x86_64 | Desktop with Nvidia GPU, Wayland (Niri), FIDO2 disk encryption |
-| merlow | NixOS x86_64 | Hetzner VPS, headless server |
-| watt | NixOS x86_64 | Homelab MacBook Pro, headless, Home Assistant |
-| nolrem | nix-darwin aarch64 | MacBook Air |
-| FH91CFY4QP-2 | nix-darwin aarch64 | Work MacBook, uses `alebat01` user |
+Each host's `configuration.nix` is self-contained: it imports the modules it needs from `/modules/` and configures home-manager inline. The `flake.nix` is kept slim, only wiring host entry points to `nixosSystem`/`darwinSystem` with `home-manager.*Modules.*`.
 
-### Home Manager (`/home/`)
+| Host | Platform | Profile | Notes |
+|------|----------|---------|-------|
+| merlon | NixOS x86_64 | desktop | Desktop with Nvidia GPU, Wayland (Niri), FIDO2 disk encryption |
+| merlow | NixOS x86_64 | headless | Hetzner VPS, headless server |
+| watt | NixOS x86_64 | headless | Homelab MacBook Pro, headless |
+| nolrem | nix-darwin aarch64 | laptop | MacBook Air |
+| FH91CFY4QP-2 | nix-darwin aarch64 | laptop | Work MacBook, uses `alebat01` user |
 
-Two user profiles with layered configuration:
+Shared darwin config lives in `hosts/darwin.nix`.
 
-- **bates64/cli/** - Base configuration for all machines (shell, git, rust, cpp)
-- **bates64/gui/** - Extends cli with desktop apps (browser, terminal, window manager)
-- **alebat01/** - Work user, imports shared cli/gui modules
+### Modules (`/modules/`)
 
-**Key pattern:** The `isMacOS` option (defined in `home/bates64/cli/default.nix`) allows conditional logic for cross-platform configs:
+Reusable modules organised by module system:
+
+- **`modules/system/`** - NixOS and nix-darwin system modules (auto-upgrade, gc, nixvim, tailscale, factorio, matchbox, minecraft, focus-follows-mouse). Darwin-only modules use `lib.mkIf pkgs.stdenv.isDarwin`.
+- **`modules/home/`** - Home-manager modules (shell, git, rust, cpp, ghostty, niri, hammerspoon, zed, browser, etc.)
+- **`modules/home/profiles/`** - Chained profiles that compose home modules:
+  - `headless.nix` - CLI tools (shell, git, rust, cpp, caches). Defines the `isMacOS` option.
+  - `desktop.nix` - Imports headless + GUI apps (niri, ghostty, zed, browser, vscode)
+  - `laptop.nix` - Imports desktop + hammerspoon (macOS window management)
+
+Hosts import modules à la carte. The `isMacOS` option allows conditional logic for cross-platform configs:
 ```nix
 if config.isMacOS then [ ] else [ pkgs.mold ]
 ```
-
-### System Modules
-
-- `/tasks/` - Shared NixOS modules
-- `/programs/` - System-wide programs
-- `/services/` - Server services
 
 ### Flake Structure
 
@@ -68,4 +69,4 @@ The `flake.nix` defines:
 - `darwinConfigurations` for macOS hosts
 - `homeConfigurations` for standalone home-manager
 
-Inputs are passed to modules via `extraSpecialArgs = { inherit inputs; }`.
+Inputs are passed to modules via `specialArgs = { inherit inputs; }`.

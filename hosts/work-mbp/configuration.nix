@@ -1,5 +1,21 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 {
+  imports = [
+    ../darwin.nix
+  ];
+
+  home-manager = {
+    useGlobalPkgs = true;
+    useUserPackages = true;
+    users.alebat01 =
+      { ... }:
+      {
+        imports = [ ../../home/alebat01/home.nix ];
+        isMacOS = true;
+      };
+    extraSpecialArgs = { inherit inputs; };
+  };
+
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages = [

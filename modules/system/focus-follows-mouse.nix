@@ -15,15 +15,17 @@ let
   });
 in
 {
-  environment.systemPackages = [ autoraise ];
+  config = lib.mkIf pkgs.stdenv.isDarwin {
+    environment.systemPackages = [ autoraise ];
 
-  launchd.user.agents.autoraise = {
-    command = "${autoraise}/bin/autoraise -delay 0 -focusDelay 1";
-    serviceConfig = {
-      KeepAlive = true;
-      RunAtLoad = true;
-      StandardOutPath = "/tmp/autoraise.log";
-      StandardErrorPath = "/tmp/autoraise.err.log";
+    launchd.user.agents.autoraise = {
+      command = "${autoraise}/bin/autoraise -delay 0 -focusDelay 1";
+      serviceConfig = {
+        KeepAlive = true;
+        RunAtLoad = true;
+        StandardOutPath = "/tmp/autoraise.log";
+        StandardErrorPath = "/tmp/autoraise.err.log";
+      };
     };
   };
 }

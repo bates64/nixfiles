@@ -60,15 +60,9 @@
   outputs =
     {
       nixpkgs,
-      minegrub-world-sel-theme,
-      minecraft-plymouth-theme,
       home-manager,
       nix-darwin,
-      nixvim,
-      vscode-server,
       nixgl,
-      disko,
-      nix-minecraft,
       ...
     }@inputs:
     let
@@ -84,170 +78,56 @@
       };
     in
     {
-      #
       nixosConfigurations = {
-        # PC
+        # Desktop PC
         merlon = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           pkgs = pkgs-x86_64;
+          specialArgs = { inherit inputs; };
           modules = [
             ./hosts/merlon/configuration.nix
-            ./tasks/auto-upgrade.nix
-            ./tasks/gc.nix
-            minegrub-world-sel-theme.nixosModules.default
-            minecraft-plymouth-theme.nixosModules.default
-            disko.nixosModules.disko
-
-            {
-              programs.nix-ld.enable = true;
-            }
-
-            # Splash
-            {
-              boot = {
-                plymouth = {
-                  enable = true;
-                  plymouth-minecraft-theme.enable = true;
-                };
-
-                # Enable "Silent boot"
-                consoleLogLevel = 3;
-                initrd.verbose = false;
-                kernelParams = [
-                  "quiet"
-                  "splash"
-                  "boot.shell_on_fail"
-                  "udev.log_priority=3"
-                  "rd.systemd.show_status=auto"
-                ];
-              };
-            }
-
             home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.bates64 = ./home/bates64/gui;
-              home-manager.backupCommand = "rm";
-              home-manager.extraSpecialArgs = { inherit inputs; };
-            }
-
-            nixvim.nixosModules.nixvim
-            ./programs/nixvim.nix
-
-            vscode-server.nixosModules.default
-            {
-              services.vscode-server.enable = true;
-            }
-
-            ./services/tailscale.nix
           ];
         };
         # Hetzner VPS
         merlow = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           pkgs = pkgs-x86_64;
+          specialArgs = { inherit inputs; };
           modules = [
             ./hosts/merlow/configuration.nix
-            ./tasks/auto-upgrade.nix
-            ./tasks/gc.nix
-
             home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.bates64 = ./home/bates64/cli;
-            }
-
-            nixvim.nixosModules.nixvim
-            ./programs/nixvim.nix
-
-            vscode-server.nixosModules.default
-            {
-              services.vscode-server.enable = true;
-            }
-
-            nix-minecraft.nixosModules.minecraft-servers
-            {
-              nixpkgs.overlays = [ nix-minecraft.overlay ];
-            }
-
-            ./services/factorio.nix
-            #./services/wua-mediawiki.nix # FIXME extensions should use git
-            ./services/matchbox.nix
-            ./services/minecraft/vanilla.nix
-            ./services/minecraft/gtnh
-
-            ./services/tailscale.nix
           ];
         };
         # Homelab
         watt = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           pkgs = pkgs-x86_64;
+          specialArgs = { inherit inputs; };
           modules = [
-            disko.nixosModules.disko
             ./hosts/watt/configuration.nix
-            ./tasks/auto-upgrade.nix
-            ./tasks/gc.nix
-
             home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.bates64 = ./home/bates64/cli;
-            }
-
-            nixvim.nixosModules.nixvim
-            ./programs/nixvim.nix
-
-            ./services/tailscale.nix
           ];
         };
       };
 
-      # Laptops
       darwinConfigurations = {
-        # Macbook Air 15
+        # MacBook Air 15
         nolrem = nix-darwin.lib.darwinSystem {
           pkgs = pkgs-aarch64-darwin;
+          specialArgs = { inherit inputs; };
           modules = [
             ./hosts/nolrem/configuration.nix
-            ./hosts/darwin.nix
-
             home-manager.darwinModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.bates64 =
-                { ... }:
-                {
-                  imports = [ ./home/bates64/gui ];
-                  isMacOS = true;
-                };
-              home-manager.extraSpecialArgs = { inherit inputs; };
-            }
           ];
         };
-        # (Work) Macbook Pro
+        # (Work) MacBook Pro
         "FH91CFY4QP-2" = nix-darwin.lib.darwinSystem {
           pkgs = pkgs-aarch64-darwin;
+          specialArgs = { inherit inputs; };
           modules = [
             ./hosts/work-mbp/configuration.nix
-            ./hosts/darwin.nix
-
             home-manager.darwinModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.alebat01 =
-                { ... }:
-                {
-                  imports = [ ./home/alebat01/home.nix ];
-                  isMacOS = true;
-                };
-              home-manager.extraSpecialArgs = { inherit inputs; };
-            }
           ];
         };
       };

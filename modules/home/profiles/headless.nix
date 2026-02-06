@@ -1,12 +1,12 @@
 { lib, config, ... }:
 {
   imports = [
-    ./shell
-    ./git.nix
-    ./caches.nix
-    #./tmux.nix
-    ./rust
-    ./cpp
+    ../shell
+    ../git.nix
+    ../caches.nix
+    #../tmux.nix
+    ../rust
+    ../cpp
   ];
   options = {
     isMacOS = lib.mkOption {

@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  inputs,
   modulesPath,
   ...
 }:
@@ -10,7 +11,19 @@
   imports = [
     ./disko.nix
     (modulesPath + "/hardware/network/broadcom-43xx.nix")
+    ../../modules/system/auto-upgrade.nix
+    ../../modules/system/gc.nix
+    ../../modules/system/nixvim.nix
+    ../../modules/system/tailscale.nix
+    inputs.disko.nixosModules.disko
+    inputs.nixvim.nixosModules.nixvim
   ];
+
+  home-manager = {
+    useGlobalPkgs = true;
+    useUserPackages = true;
+    users.bates64 = ../../modules/home/profiles/headless.nix;
+  };
 
   # Hardware
   boot.initrd.availableKernelModules = [

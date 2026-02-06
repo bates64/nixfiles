@@ -2,8 +2,7 @@
 {
   imports = [
     ./ssh.nix
-    ../bates64/cli
-    ../bates64/gui
+    ../../modules/home/profiles/desktop.nix
   ];
   config = {
     home.username = "alebat01";

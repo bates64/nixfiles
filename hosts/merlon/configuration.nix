@@ -8,6 +8,7 @@
   config,
   pkgs,
   lib,
+  inputs,
   ...
 }:
 
@@ -18,7 +19,42 @@ in
   imports = [
     ./disko.nix
     #./8bitdo.nix
+    ../../modules/system/auto-upgrade.nix
+    ../../modules/system/gc.nix
+    ../../modules/system/nixvim.nix
+    ../../modules/system/tailscale.nix
+    inputs.minegrub-world-sel-theme.nixosModules.default
+    inputs.minecraft-plymouth-theme.nixosModules.default
+    inputs.disko.nixosModules.disko
+    inputs.nixvim.nixosModules.nixvim
+    inputs.vscode-server.nixosModules.default
   ];
+
+  programs.nix-ld.enable = true;
+  services.vscode-server.enable = true;
+
+  boot.plymouth = {
+    enable = true;
+    plymouth-minecraft-theme.enable = true;
+  };
+  boot.consoleLogLevel = 3;
+  boot.initrd.verbose = false;
+  boot.kernelParams = [
+    "quiet"
+    "splash"
+    "boot.shell_on_fail"
+    "udev.log_priority=3"
+    "rd.systemd.show_status=auto"
+    "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
+  ];
+
+  home-manager = {
+    useGlobalPkgs = true;
+    useUserPackages = true;
+    users.bates64 = ../../modules/home/profiles/desktop.nix;
+    backupCommand = "rm";
+    extraSpecialArgs = { inherit inputs; };
+  };
 
   boot.loader.grub = {
     enable = true;
@@ -210,8 +246,6 @@ in
     forceFullCompositionPipeline = true; # Fixes tearing
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
-
-  boot.kernelParams = [ "nvidia.NVreg_PreserveVideoMemoryAllocations=1" ];
 
   boot.extraModulePackages =
     with config.boot.kernelPackages;

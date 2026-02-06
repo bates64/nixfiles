@@ -5,7 +5,6 @@
   ...
 }:
 let
-  # on macOS, override ares so that `ares` works in the shell
   ares-wrapped =
     if config.isMacOS then
       pkgs.ares.overrideAttrs (oldAttrs: {
@@ -19,13 +18,12 @@ let
 in
 {
   imports = [
-    ../cli
-    ./gl.nix
-    ./niri
-    ./hammerspoon
-    ./ghostty
-    ./zed.nix
-    ./browser.nix
+    ./headless.nix
+    ../gl.nix
+    ../niri
+    ../ghostty
+    ../zed.nix
+    ../browser.nix
   ];
 
   programs.vscode = {
@@ -64,5 +62,4 @@ in
           aseprite # TODO: maintain darwin package
         ]
     );
-
 }

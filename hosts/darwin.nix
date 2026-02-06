@@ -1,6 +1,6 @@
 {
   imports = [
-    ../services/darwin/focus-follows-mouse.nix
+    ../modules/system/focus-follows-mouse.nix
   ];
 
   system.defaults.NSGlobalDomain.AppleFontSmoothing = 0; # https://tonsky.me/blog/monitors/

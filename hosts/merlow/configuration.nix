@@ -2,13 +2,35 @@
   config,
   lib,
   pkgs,
+  inputs,
   ...
 }:
 
 {
   imports = [
     ./hardware-configuration.nix
+    ../../modules/system/auto-upgrade.nix
+    ../../modules/system/gc.nix
+    ../../modules/system/nixvim.nix
+    ../../modules/system/tailscale.nix
+    ../../modules/system/factorio.nix
+    #../../modules/system/wua-mediawiki.nix # FIXME extensions should use git
+    ../../modules/system/matchbox.nix
+    ../../modules/system/minecraft/vanilla.nix
+    ../../modules/system/minecraft/gtnh
+    inputs.nixvim.nixosModules.nixvim
+    inputs.vscode-server.nixosModules.default
+    inputs.nix-minecraft.nixosModules.minecraft-servers
   ];
+
+  services.vscode-server.enable = true;
+  nixpkgs.overlays = [ inputs.nix-minecraft.overlay ];
+
+  home-manager = {
+    useGlobalPkgs = true;
+    useUserPackages = true;
+    users.bates64 = ../../modules/home/profiles/headless.nix;
+  };
 
   # Use the GRUB 2 boot loader.
   boot.loader.grub.enable = true;
