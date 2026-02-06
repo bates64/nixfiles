@@ -1,5 +1,6 @@
 {
   config,
+  lib,
   pkgs,
   modulesPath,
   ...
@@ -30,7 +31,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  services.logind.lidSwitch = "ignore";
+  services.logind.settings.Login.HandleLidSwitch = "ignore";
 
   networking.hostName = "watt";
 
@@ -60,10 +61,13 @@
     git
   ];
 
+  programs.zsh.loginShellInit = ''
+    ${lib.getExe pkgs.chafa} --format=kitty ${./host.png}
+  '';
+
   # Reduce size of image
   nix.settings.auto-optimise-store = true;
   documentation.enable = false;
-  programs.info.enable = true;
 
   nix.settings.experimental-features = [
     "nix-command"
