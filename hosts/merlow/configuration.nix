@@ -65,6 +65,7 @@
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINsDTVCIkcFjkaDm5RoWG1uSNJBanUWGmoKHIRHvSsQq alex@bates64.com"
     ];
+    shell = pkgs.zsh;
   };
   users.users.spchee = {
     isNormalUser = true;
@@ -143,6 +144,8 @@
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   networking.firewall.enable = false;
+
+  programs.zsh.enable = true;
 
   # Reduce size of image
   nix.settings.auto-optimise-store = true;

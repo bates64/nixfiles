@@ -50,6 +50,7 @@
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINsDTVCIkcFjkaDm5RoWG1uSNJBanUWGmoKHIRHvSsQq alex@bates64.com"
     ];
+    shell = pkgs.zsh;
   };
 
   # Not publicly accessible, so disable firewall.
@@ -61,8 +62,9 @@
     git
   ];
 
+  programs.zsh.enable = true;
   programs.zsh.loginShellInit = ''
-    ${lib.getExe pkgs.chafa} --format=kitty ${./host.png}
+    ${lib.getExe pkgs.chafa} --format=kitty --clear --scale=4 --align top,mid ${./host.png}
   '';
 
   # Reduce size of image
