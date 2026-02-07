@@ -114,7 +114,7 @@
         };
         jdtls = {
           binary = {
-            path = lib.getExe pkgs.jdt-language-server;
+            path = "jdtls"; # provide through devShell
           };
         };
       };
