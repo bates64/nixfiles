@@ -4,3 +4,8 @@
 .envrc
 
 target
+
+/.zed
+/.claude
+AGENTS.md
+CLAUDE.md
