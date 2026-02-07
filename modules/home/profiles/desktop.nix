@@ -21,6 +21,7 @@ in
     ./headless.nix
     ../gl.nix
     ../niri
+    ../hammerspoon
     ../ghostty
     ../zed.nix
     ../browser.nix
@@ -49,6 +50,7 @@ in
     with pkgs;
     [
       nerd-fonts.fira-code
+      inter-nerdfont
       vesktop
       ares-wrapped
       obsidian

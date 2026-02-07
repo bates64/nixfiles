@@ -1,4 +1,9 @@
-{ pkgs, lib, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 {
   home.packages = with pkgs; [
     clang-tools
@@ -11,16 +16,20 @@
     enable = true;
     extensions = [
       "catppuccin"
+      "catppuccin-icons"
       "nix"
       "toml"
+      "xml"
+      "kdl"
       "lua"
       "starlark" # for Bazel
+      "java"
+      "python"
+      "git-firefly"
+      "glsl"
     ];
     userSettings = {
       #server_url = "https://disable-zed-downloads.invalid"; # https://github.com/zed-industries/zed/issues/12589
-      agent = {
-        enabled = true;
-      };
 
       node = {
         path = "node";
@@ -49,9 +58,6 @@
         font_features = null;
         font_size = null;
         shell = "system";
-        toolbar = {
-          title = true;
-        };
         working_directory = "current_project_directory";
       };
       languages = {
@@ -75,7 +81,7 @@
       lsp = {
         rust-analyzer = {
           binary = {
-            path = "rust-analyzer";
+            path = lib.getExe pkgs.rust-analyzer;
           };
           initialization_options.check.command = "clippy";
         };
@@ -106,6 +112,11 @@
             ];
           };
         };
+        jdtls = {
+          binary = {
+            path = lib.getExe pkgs.jdt-language-server;
+          };
+        };
       };
 
       vim_mode = false;
@@ -115,21 +126,74 @@
       base_keymap = "VSCode";
 
       theme = {
-        mode = "dark";
+        mode = "system";
         light = "Catppuccin Latte";
         dark = "Catppuccin Mocha";
       };
-      project_panel.dock = "right";
-      ui_font_family = "FiraCode Nerd Font Mono";
+      icon_theme = {
+        mode = "system";
+        light = "Catppuccin Latte";
+        dark = "Catppuccin Mocha";
+      };
+
+      title_bar = {
+        show_user_picture = false;
+        show_onboarding_banner = true;
+        show_project_items = true;
+        show_branch_name = true;
+        show_branch_icon = true;
+      };
+      tabs = {
+        file_icons = true;
+        git_status = true;
+        show_diagnostics = "errors";
+        show_close_button = "hidden"; # middle click
+      };
+      preview_tabs.enable_preview_from_file_finder = true;
+      tab_bar.show_pinned_tabs_in_separate_row = true;
+
+      bottom_dock_layout = "full";
+
+      project_panel = {
+        dock = "right";
+        hide_root = true;
+      };
+      git_panel = {
+        tree_view = true;
+        sort_by_path = true;
+      };
+      notification_panel.button = false;
+      collaboration_panel.button = false;
+      agent_panel = {
+        dock = "bottom";
+        default_height = 600.0;
+      };
+      agent = {
+        enabled = true;
+        notify_when_agent_waiting = "never";
+        play_sound_when_agent_done = true;
+      };
+
+      ui_font_family = "Inter";
       ui_font_size = 13;
       buffer_font_family = "FiraCode Nerd Font Mono";
-      buffer_font_size = 13;
+      buffer_font_size = 11;
+
+      rounded_selection = false;
 
       wrap_guides = [
         80
         100
         120
       ];
+      git.inline_blame.min_column = 80;
+
+      session.trust_all_worktrees = true;
+
+      use_system_prompts = config.isMacOS;
+      use_system_path_prompts = config.isMacOS;
+
+      window_decorations = "server";
     };
     installRemoteServer = true;
   };
