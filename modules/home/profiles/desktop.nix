@@ -24,6 +24,7 @@ in
     ../hammerspoon
     ../ghostty
     ../zed.nix
+    ../intellij.nix
     ../browser.nix
   ];
 
