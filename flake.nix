@@ -141,7 +141,7 @@
         pkgs = pkgs-x86_64;
         modules = [
           ./home/alebat01/home.nix # TODO: no need for GUI
-          ./home/alebat01/auto-upgrade.nix
+          ./home/modules/auto-upgrade.nix
         ];
         extraSpecialArgs = { inherit inputs; };
       };

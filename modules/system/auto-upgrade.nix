@@ -1,7 +1,7 @@
 {
   system.autoUpgrade = {
     enable = true;
-    flake = "github:bates64/nixfiles";
+    flake = "git+https://tangled.org/bates64.com/infra";
     flags = [
       "--update-input" # deprecated, see https://github.com/NixOS/nixpkgs/issues/349734
       "nixpkgs"
