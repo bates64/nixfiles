@@ -174,7 +174,7 @@
         play_sound_when_agent_done = true;
       };
 
-      ui_font_family = "Inter";
+      ui_font_family = "Inter Variable";
       ui_font_size = 13;
       buffer_font_family = "FiraCode Nerd Font Mono";
       buffer_font_size = 11;

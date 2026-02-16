@@ -19,6 +19,7 @@
     home.packages = with pkgs; [
       xwayland-satellite
       nautilus
+      gpu-screen-recorder
     ];
 
     programs.niri = {
